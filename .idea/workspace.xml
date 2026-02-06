@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3783575c-0271-45a1-8c3d-5ac45c3f7f8f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/tech/sus_triage_api/domain/Paciente.java" afterDir="false" />
-    </list>
+    <list default="true" id="3783575c-0271-45a1-8c3d-5ac45c3f7f8f" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -28,20 +26,23 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/BL7Ki/sus-triage-api.git",
-    "accountId": "5b7fab89-fdbe-4a52-8a19-0adb97f04f38"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/BL7Ki/sus-triage-api.git&quot;,
+    &quot;accountId&quot;: &quot;5b7fab89-fdbe-4a52-8a19-0adb97f04f38&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "git-widget-placeholder": "feature/Leo"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;git-widget-placeholder&quot;: &quot;feature/Leo&quot;
   }
-}]]></component>
+}</component>
+  <component name="QodanaGithubNotificationPromoProjectDismissalState">
+    <option name="dismissed" value="true" />
+  </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
