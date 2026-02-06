@@ -2,9 +2,8 @@ name: Java CI with Maven
 
 on:
   push:
-    branches: [ "develop" ] # Roda a cada commit na develop
   pull_request:
-    branches: [ "main", "develop" ] # Roda ao abrir PR
+    types: [opened, synchronize, reopened]
 
 jobs:
   build:
@@ -21,7 +20,6 @@ jobs:
           cache: maven
 
       - name: Build with Maven
-        # O parâmetro -DskipTests evita que o build falhe se não tivermos testes ainda
         run: mvn -B package --file pom.xml -DskipTests
 
       - name: Upload Artifact

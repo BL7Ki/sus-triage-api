@@ -1,6 +1,6 @@
-package com.tech.sus_triage_api.repository;
+package com.tech.sus_triage_api.repository.paciente;
 
-import com.tech.sus_triage_api.domain.Paciente;
+import com.tech.sus_triage_api.domain.paciente.Paciente;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 

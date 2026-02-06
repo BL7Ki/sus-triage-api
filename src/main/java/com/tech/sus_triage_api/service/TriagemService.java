@@ -1,7 +1,7 @@
 package com.tech.sus_triage_api.service;
 
-import com.tech.sus_triage_api.domain.Triagem;
-import com.tech.sus_triage_api.repository.TriagemRepository;
+import com.tech.sus_triage_api.domain.triagem.Triagem;
+import com.tech.sus_triage_api.repository.triagem.TriagemRepository;
 import com.tech.sus_triage_api.service.strategy.ITriagemStrategy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

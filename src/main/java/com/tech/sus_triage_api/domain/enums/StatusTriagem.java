@@ -1,4 +1,4 @@
-package com.tech.sus_triage_api.domain;
+package com.tech.sus_triage_api.domain.enums;
 
 public enum StatusTriagem {
     PENDENTE_ALOCACAO, // Triagem feita, aguardando vaga

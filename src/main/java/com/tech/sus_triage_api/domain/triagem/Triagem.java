@@ -1,5 +1,9 @@
-package com.tech.sus_triage_api.domain;
+package com.tech.sus_triage_api.domain.triagem;
 
+import com.tech.sus_triage_api.domain.enums.Risco;
+import com.tech.sus_triage_api.domain.enums.StatusTriagem;
+import com.tech.sus_triage_api.domain.unidadesaude.UnidadeSaude;
+import com.tech.sus_triage_api.domain.paciente.Paciente;
 import jakarta.persistence.*;
 import lombok.Data;
 import java.time.LocalDateTime;

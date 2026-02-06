@@ -1,4 +1,4 @@
-package com.tech.sus_triage_api.domain;
+package com.tech.sus_triage_api.domain.paciente;
 
 import jakarta.persistence.*;
 import lombok.Data;

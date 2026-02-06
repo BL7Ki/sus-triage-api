@@ -5,8 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3783575c-0271-45a1-8c3d-5ac45c3f7f8f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/tech/sus_triage_api/service/TriagemService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/maven.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/maven.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tech/sus_triage_api/domain/Paciente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tech/sus_triage_api/domain/paciente/Paciente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tech/sus_triage_api/domain/Risco.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tech/sus_triage_api/domain/enums/Risco.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tech/sus_triage_api/domain/StatusTriagem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tech/sus_triage_api/domain/enums/StatusTriagem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tech/sus_triage_api/domain/Triagem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tech/sus_triage_api/domain/triagem/Triagem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tech/sus_triage_api/domain/UnidadeSaude.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tech/sus_triage_api/domain/unidadesaude/UnidadeSaude.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tech/sus_triage_api/repository/PacienteRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tech/sus_triage_api/repository/paciente/PacienteRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tech/sus_triage_api/repository/TriagemRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tech/sus_triage_api/repository/triagem/TriagemRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tech/sus_triage_api/repository/UnidadeSaudeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tech/sus_triage_api/repository/unidadesaude/UnidadeSaudeRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tech/sus_triage_api/service/TriagemService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tech/sus_triage_api/service/TriagemService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tech/sus_triage_api/service/strategy/ITriagemStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tech/sus_triage_api/service/strategy/ITriagemStrategy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tech/sus_triage_api/service/strategy/ProtocoloManchesterStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tech/sus_triage_api/service/strategy/ProtocoloManchesterStrategy.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
