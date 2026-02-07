@@ -1,6 +1,30 @@
 version: '3.8'
 
 services:
+  # Aplicação Spring Boot
+  sus-triage-api:
+    build: .
+    container_name: sus_api
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/sus_triage_db
+      SPRING_DATASOURCE_USERNAME: sus_user
+      SPRING_DATASOURCE_PASSWORD: sus_password
+      SPRING_RABBITMQ_HOST: rabbitmq
+      SPRING_RABBITMQ_PORT: 5672
+      SPRING_DATA_REDIS_HOST: redis
+      SPRING_DATA_REDIS_PORT: 6379
+    depends_on:
+      postgres:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_started
+      redis:
+        condition: service_started
+    networks:
+      - sus-network
   # Banco de Dados PostgreSQL
   postgres:
     image: postgres:15-alpine

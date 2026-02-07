@@ -1,0 +1,16 @@
+C:\Users\Sistema Lima\Documents\fiap-pos-tech\fase5\sus-triage-api\src\main\java\com\tech\sus_triage_api\config\RabbitMQConfig.java
+C:\Users\Sistema Lima\Documents\fiap-pos-tech\fase5\sus-triage-api\src\main\java\com\tech\sus_triage_api\controller\TriagemController.java
+C:\Users\Sistema Lima\Documents\fiap-pos-tech\fase5\sus-triage-api\src\main\java\com\tech\sus_triage_api\domain\enums\Risco.java
+C:\Users\Sistema Lima\Documents\fiap-pos-tech\fase5\sus-triage-api\src\main\java\com\tech\sus_triage_api\domain\enums\StatusTriagem.java
+C:\Users\Sistema Lima\Documents\fiap-pos-tech\fase5\sus-triage-api\src\main\java\com\tech\sus_triage_api\domain\paciente\Paciente.java
+C:\Users\Sistema Lima\Documents\fiap-pos-tech\fase5\sus-triage-api\src\main\java\com\tech\sus_triage_api\domain\triagem\Triagem.java
+C:\Users\Sistema Lima\Documents\fiap-pos-tech\fase5\sus-triage-api\src\main\java\com\tech\sus_triage_api\domain\unidadesaude\UnidadeSaude.java
+C:\Users\Sistema Lima\Documents\fiap-pos-tech\fase5\sus-triage-api\src\main\java\com\tech\sus_triage_api\dto\TriagemDTO.java
+C:\Users\Sistema Lima\Documents\fiap-pos-tech\fase5\sus-triage-api\src\main\java\com\tech\sus_triage_api\repository\paciente\PacienteRepository.java
+C:\Users\Sistema Lima\Documents\fiap-pos-tech\fase5\sus-triage-api\src\main\java\com\tech\sus_triage_api\repository\triagem\TriagemRepository.java
+C:\Users\Sistema Lima\Documents\fiap-pos-tech\fase5\sus-triage-api\src\main\java\com\tech\sus_triage_api\repository\unidadesaude\UnidadeSaudeRepository.java
+C:\Users\Sistema Lima\Documents\fiap-pos-tech\fase5\sus-triage-api\src\main\java\com\tech\sus_triage_api\service\rabbitmq\TriagemProducer.java
+C:\Users\Sistema Lima\Documents\fiap-pos-tech\fase5\sus-triage-api\src\main\java\com\tech\sus_triage_api\service\strategy\ITriagemStrategy.java
+C:\Users\Sistema Lima\Documents\fiap-pos-tech\fase5\sus-triage-api\src\main\java\com\tech\sus_triage_api\service\strategy\ProtocoloManchesterStrategy.java
+C:\Users\Sistema Lima\Documents\fiap-pos-tech\fase5\sus-triage-api\src\main\java\com\tech\sus_triage_api\service\TriagemService.java
+C:\Users\Sistema Lima\Documents\fiap-pos-tech\fase5\sus-triage-api\src\main\java\com\tech\sus_triage_api\SusTriageApiApplication.java
