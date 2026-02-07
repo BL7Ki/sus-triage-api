@@ -14,7 +14,7 @@ public class RabbitMQConfig {
 
     @Bean
     public Queue queue() {
-        return new Queue(QUEUE_TRIAGEM, true); // true = durável (não perde se reiniciar)
+        return new Queue(QUEUE_TRIAGEM, true);
     }
 
     @Bean
