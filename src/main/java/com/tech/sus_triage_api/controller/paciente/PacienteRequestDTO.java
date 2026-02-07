@@ -2,11 +2,13 @@ package com.tech.sus_triage_api.controller.paciente;
 
 import com.tech.sus_triage_api.entities.PacienteEntity;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import org.hibernate.validator.constraints.br.CPF;
 
 public record PacienteRequestDTO(
 
     @NotBlank
+    @Size(max = 50)
     String nome,
     @CPF
     String cpf,
