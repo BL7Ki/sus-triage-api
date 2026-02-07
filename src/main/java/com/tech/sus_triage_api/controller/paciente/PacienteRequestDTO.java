@@ -1,11 +1,13 @@
 package com.tech.sus_triage_api.controller.paciente;
 
 import com.tech.sus_triage_api.entities.PacienteEntity;
+import jakarta.validation.constraints.NotBlank;
 import org.hibernate.validator.constraints.br.CPF;
 
 public record PacienteRequestDTO(
-    String nome,
 
+    @NotBlank
+    String nome,
     @CPF
     String cpf,
     Double latitude,
