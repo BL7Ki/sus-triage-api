@@ -60,7 +60,6 @@ public class Triagem {
     public Risco getRisco() { return risco; }
     public StatusTriagem getStatus() { return status; }
     public LocalDateTime getDataHora() { return dataHora; }
-
     public String getSintomas() { return sintomas; }
     public Integer getPressaoArterialSistolica() { return pressaoArterialSistolica; }
     public Integer getPressaoArterialDiastolica() { return pressaoArterialDiastolica; }

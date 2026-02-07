@@ -31,7 +31,6 @@ public class TriagemService {
 
     @Transactional
     public Triagem realizarTriagem(TriagemDTO dto) {
-        // 1. Lógica do Paciente movida para o Service
         Paciente paciente = pacienteRepository.findByCpf(dto.cpfPaciente())
                 .orElseGet(() -> {
                     Paciente novo = new Paciente(dto.nomePaciente(), dto.cpfPaciente());
@@ -39,13 +38,12 @@ public class TriagemService {
                     return pacienteRepository.save(novo);
                 });
 
-        // 2. Calcula o risco usando o DTO
         Risco risco = triagemStrategy.classificar(dto);
 
-        // 3. Cria a entidade com o estado completo
         Triagem triagem = new Triagem(paciente, dto, risco);
 
         Triagem salva = triagemRepository.save(triagem);
+
         triagemProducer.enviarParaFila(salva);
 
         return salva;

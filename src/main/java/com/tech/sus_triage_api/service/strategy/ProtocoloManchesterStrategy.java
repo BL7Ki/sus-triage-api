@@ -11,6 +11,9 @@ public class ProtocoloManchesterStrategy implements ITriagemStrategy {
         if (d.saturacao() < 90 || d.batimentos() > 130) return Risco.VERMELHO;
         if (d.saturacao() < 95 || d.temperatura() >= 39.0) return Risco.LARANJA;
         if (d.pressaoSistolica() > 160 || d.temperatura() >= 37.8) return Risco.AMARELO;
-        return Risco.VERDE;
+        if (d.sintomas() != null && !d.sintomas().isBlank()) {
+            return Risco.VERDE;
+        }
+        return Risco.AZUL;
     }
 }
