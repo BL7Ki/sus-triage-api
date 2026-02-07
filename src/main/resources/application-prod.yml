@@ -29,10 +29,9 @@ spring:
       host: localhost
       port: 6379
 
-# Configuração do Swagger (Documentação)
+# SpringDoc OpenAPI configuration
 springdoc:
   api-docs:
-    path: /api-docs
+    enabled: true
   swagger-ui:
-    path: /swagger-ui.html # Acesse aqui para ver a API
-    operations-sorter: method
+    enabled: true

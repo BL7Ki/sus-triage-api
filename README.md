@@ -134,6 +134,8 @@ Request Body:
 "longitude": -46.6333
 }
 
+
+````
 Resposta:
 ````
 {
@@ -144,3 +146,47 @@ Resposta:
 "longitude": -46.6333
 }
 ````
+
+## obter informações de um paciente
+GET /api/pacientes/{id}
+Resposta:
+````
+
+{
+"id": 1,
+"nome": "João Silva",
+"cpf": "123.456.789-00",
+"latitude": -23.5505,
+"longitude": -46.6333
+}
+````
+# Opção 3: Com Docker Compose (Recomendado para Produção)
+
+## 1. Gerar o build do projeto
+Antes de subir os serviços, gere o artefato `.jar` do projeto:
+```bash
+mvn clean package -DskipTests
+```
+
+## 2. Subir todos os serviços
+```bash
+docker-compose up -d
+```
+## 3. Ver logs em tempo real
+```bash
+docker-compose logs -f
+```
+## 4. Verificar status dos serviços
+```bash
+docker-compose ps
+```
+## 5. Parar serviços
+```bash
+docker-compose down
+```
+
+## URLs para acessar a aplicação
+- API: http://localhost:8080/api
+- Health Check: http://localhost:8080/actuator/health
+- Swagger UI (se configurado): http://localhost:8080/swagger-ui.html
+       

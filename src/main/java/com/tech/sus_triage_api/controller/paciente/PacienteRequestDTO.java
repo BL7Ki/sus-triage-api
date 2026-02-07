@@ -1,0 +1,24 @@
+package com.tech.sus_triage_api.controller.paciente;
+
+import com.tech.sus_triage_api.entities.PacienteEntity;
+import org.hibernate.validator.constraints.br.CPF;
+
+public record PacienteRequestDTO(
+    String nome,
+
+    @CPF
+    String cpf,
+    Double latitude,
+    Double longitude
+) {
+    public PacienteEntity toEntity() {
+
+        return new PacienteEntity(
+            null, // ID será gerado posteriormente
+            this.nome,
+            this.cpf,
+            this.latitude,
+            this.longitude
+        );
+    }
+}

@@ -35,5 +35,14 @@ spring:
       host: localhost
       port: 6379
 
+
+# SpringDoc OpenAPI configuration
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    enabled: true
+
+
 server:
   port: 8081
