@@ -14,6 +14,7 @@ class TriagemControllerTest {
     void testCriarTriagem() {
         TriagemService triagemService = Mockito.mock(TriagemService.class);
         TriagemController controller = new TriagemController(triagemService);
+        // Dados de entrada
         TriagemDTO dto = new TriagemDTO(
             "João",
             "12345678900",
