@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class TriagemProducer {
 
-    private final RabbitTemplate rabbitTemplate;
+    private final RabbitTemplate rabbitTemplate = new RabbitTemplate();
 
     public void enviarParaFila(Triagem triagem) {
         rabbitTemplate.convertAndSend(RabbitMQConfig.QUEUE_TRIAGEM, triagem);
