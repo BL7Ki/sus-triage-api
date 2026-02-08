@@ -26,6 +26,14 @@ public class UnidadeSaude {
         return ocupacaoAtual < capacidadeTotal;
     }
 
+    public void adicionarPaciente() {
+        if (this.ocupacaoAtual < this.capacidadeTotal) {
+            this.ocupacaoAtual++;
+        } else {
+            throw new IllegalStateException("Unidade sem capacidade disponível.");
+        }
+    }
+
     public UnidadeSaude() {}
 
     public UnidadeSaude(String nome, String tipo, Double latitude, Double longitude, Integer capacidadeTotal) {
