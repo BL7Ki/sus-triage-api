@@ -6,8 +6,8 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface UnidadeSaudeRepository extends JpaRepository<UnidadeSaude, Long> {
+    
+    List<UnidadeSaude> findByOcupacaoAtualLessThanCapacidadeTotalAndTipoIn(List<TipoUnidade> tipos);
 
-    // Busca unidades onde a ocupação é menor que a capacidade
-    @Query("SELECT u FROM UnidadeSaude u WHERE u.ocupacaoAtual < u.capacidadeTotal")
-    List<UnidadeSaude> findAllComVagas();
+    List<UnidadeSaude> findByOcupacaoAtualLessThanCapacidadeTotal();
 }
