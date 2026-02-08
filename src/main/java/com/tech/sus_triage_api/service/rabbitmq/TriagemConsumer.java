@@ -1,13 +1,15 @@
 package com.tech.sus_triage_api.service.rabbitmq;
 
 import com.tech.sus_triage_api.config.RabbitMQConfig;
-import com.tech.sus_triage_api.domain.enums.StatusTriagem;
+import com.tech.sus_triage_api.domain.enums.Risco;
+import com.tech.sus_triage_api.domain.enums.TipoUnidade;
 import com.tech.sus_triage_api.domain.triagem.Triagem;
 import com.tech.sus_triage_api.domain.unidadesaude.UnidadeSaude;
 import com.tech.sus_triage_api.dto.TriagemEventoDTO;
 import com.tech.sus_triage_api.repository.triagem.TriagemRepository;
 import com.tech.sus_triage_api.repository.unidadesaude.UnidadeSaudeRepository;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,46 +21,60 @@ public class TriagemConsumer {
 
     private final TriagemRepository triagemRepository;
     private final UnidadeSaudeRepository unidadeSaudeRepository;
+    private final RabbitTemplate rabbitTemplate;
 
     public TriagemConsumer(TriagemRepository triagemRepository,
-                           UnidadeSaudeRepository unidadeSaudeRepository) {
+                           UnidadeSaudeRepository unidadeSaudeRepository,
+                           RabbitTemplate rabbitTemplate) {
         this.triagemRepository = triagemRepository;
         this.unidadeSaudeRepository = unidadeSaudeRepository;
+        this.rabbitTemplate = rabbitTemplate;
     }
 
     @RabbitListener(queues = RabbitMQConfig.QUEUE_TRIAGEM)
     @Transactional
     public void processarAlocacao(TriagemEventoDTO evento) {
-        System.out.println(">>> Listener recebendo Triagem ID: " + evento.triagemId() + " com Risco: " + evento.risco());
+        System.out.println(">>> Processando Alocação Inteligente. ID: " + evento.triagemId() + " | Risco: " + evento.risco());
 
         Triagem triagem = triagemRepository.findById(evento.triagemId())
                 .orElseThrow(() -> new RuntimeException("Triagem não encontrada: " + evento.triagemId()));
 
-        List<UnidadeSaude> unidadesDisponiveis = unidadeSaudeRepository.findByOcupacaoAtualLessThanCapacidadeTotal();
+        List<TipoUnidade> tiposAdequados = determinarTiposPorRisco(triagem.getRisco());
+
+        List<UnidadeSaude> unidadesDisponiveis = unidadeSaudeRepository.findDisponiveisPorTipos(tiposAdequados);
 
         if (unidadesDisponiveis.isEmpty()) {
-            System.err.println("ALERTA: Nenhuma unidade disponível para a Triagem ID: " + triagem.getId());
-            // Aqui você poderia enviar para uma fila de "Espera Crítica"
+            System.err.println("CRÍTICO: Nenhuma vaga disponível para risco " + triagem.getRisco() + ". Enviando para Espera Crítica.");
+            rabbitTemplate.convertAndSend(RabbitMQConfig.QUEUE_ESPERA_CRITICA, evento);
             return;
         }
 
-        // Algoritmo de Distância
+        // Algoritmo de Distância entre as unidades filtradas
         UnidadeSaude unidadeDestino = unidadesDisponiveis.stream()
                 .min(Comparator.comparingDouble(u -> calcularDistancia(
                         triagem.getPaciente().getLatitude(), triagem.getPaciente().getLongitude(),
                         u.getLatitude(), u.getLongitude()
                 )))
-                .orElseThrow(); // Garantido que existe pela checagem anterior
+                .orElseThrow();
 
         triagem.marcarComoAlocada(unidadeDestino);
-
         unidadeDestino.adicionarPaciente();
 
         unidadeSaudeRepository.save(unidadeDestino);
         triagemRepository.save(triagem);
 
         System.out.println("SUCESSO: Paciente " + triagem.getPaciente().getNome() +
-                " (Risco " + triagem.getRisco() + ") alocado para " + unidadeDestino.getNome());
+                " encaminhado para " + unidadeDestino.getTipo() + " " + unidadeDestino.getNome());
+    }
+
+    // Mapeamento da Regulação do SUS
+    private List<TipoUnidade> determinarTiposPorRisco(Risco risco) {
+        return switch (risco) {
+            case VERMELHO, LARANJA -> List.of(TipoUnidade.HOSPITAL);
+            case AMARELO -> List.of(TipoUnidade.UPA, TipoUnidade.HOSPITAL);
+            case VERDE -> List.of(TipoUnidade.UBS, TipoUnidade.UPA);
+            case AZUL -> List.of(TipoUnidade.UBS);
+        };
     }
 
     private double calcularDistancia(double lat1, double lon1, double lat2, double lon2) {

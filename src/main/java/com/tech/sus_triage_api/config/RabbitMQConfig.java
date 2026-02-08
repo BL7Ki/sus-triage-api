@@ -12,6 +12,8 @@ public class RabbitMQConfig {
 
     public static final String QUEUE_TRIAGEM = "triagem.pendente";
 
+    public static final String QUEUE_ESPERA_CRITICA = "triagem.espera.critica";
+
     @Bean
     public Queue queue() {
         return new Queue(QUEUE_TRIAGEM, true);
@@ -27,5 +29,10 @@ public class RabbitMQConfig {
         RabbitTemplate template = new RabbitTemplate(connectionFactory);
         template.setMessageConverter(messageConverter());
         return template;
+    }
+
+    @Bean
+    public Queue queueEsperaCritica() {
+        return new Queue(QUEUE_ESPERA_CRITICA, true);
     }
 }
