@@ -586,13 +586,13 @@ Antes de subir os serviços, gere o artefato `.jar` do projeto:
 mvn clean package -DskipTests
 ```
 
-## 2. Subir todos os serviços
+## 2. Subir todos os serviços com imagems pré-construídas
 ```bash
-docker-compose up -d
+docker-compose up --build -d
 ```
 ## 3. Ver logs em tempo real
 ```bash
-docker-compose logs -f
+docker-compose logs -f sus-triage-api
 ```
 ## 4. Verificar status dos serviços
 ```bash
