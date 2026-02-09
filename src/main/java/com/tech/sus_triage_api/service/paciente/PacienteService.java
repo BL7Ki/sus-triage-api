@@ -9,6 +9,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PacienteService {
 
@@ -22,34 +24,67 @@ public class PacienteService {
 
     public PacienteEntity criarPaciente(PacienteEntity pacienteEntity) {
 
-        logger.info("Consulta para saber se o paciente a ser criado já existe: {}", pacienteEntity);
+        logger.info("Criando paciente: {}", pacienteEntity);
 
-        Paciente pacienteDomain = pacienteEntity.toDomain();
-
-        // Verificar se já existe um paciente com o mesmo CPF
-        boolean pacienteExistente = pacienteRepository.findByCpf(pacienteEntity.getCpf()).isPresent();
-
-        if (pacienteExistente) {
-            logger.warn("Paciente com CPF {} já existe. Não será criado.", pacienteEntity.getCpf());
-            throw new SummerException("Paciente com CPF " + pacienteEntity.getCpf() + " já existe.");
+        if (pacienteRepository.findByCpf(pacienteEntity.getCpf()).isPresent()) {
+            logger.warn("CPF já existente: {}", pacienteEntity.getCpf());
+            throw new SummerException("Já existe um paciente com o CPF: " + pacienteEntity.getCpf());
         }
 
-        // Salvar o paciente no banco de dados
-        Paciente pacienteSalvo = pacienteRepository.save(pacienteDomain);
+        Paciente paciente = pacienteEntity.toDomain();
 
-        logger.info("Paciente criado com sucesso: {}", pacienteSalvo);
+        Paciente pacienteCriado = pacienteRepository.save(paciente);
 
-        // Converter o paciente salvo de volta para PacienteEntity
-        return pacienteSalvo.toEntity();
+        logger.info("Paciente criado com sucesso: {}", pacienteCriado);
+
+        return pacienteCriado.toEntity();
     }
 
-    public PacienteEntity obterPacientePorId(Long id) {
+    public PacienteEntity atualizarCoordenadas(Long id, Double latitude, Double longitude) {
 
         Paciente paciente = pacienteRepository.findById(id)
                 .orElseThrow(() -> new SummerNotFoundException("Paciente com ID " + id + " não encontrado."));
 
-        logger.info("Paciente encontrado: {}", paciente);
+        logger.info("Paciente encontrado para atualização de coordenadas: {}", paciente);
 
-        return paciente.toEntity();
+        paciente.atualizarCoordenadas(latitude, longitude);
+
+        Paciente pacienteAtualizado = pacienteRepository.save(paciente);
+
+        logger.info("Paciente atualizado com sucesso: {}", pacienteAtualizado);
+
+        return pacienteAtualizado.toEntity();
+    }
+
+    public PacienteEntity obterPacientePorId(Long id) {
+
+        logger.info("Buscando paciente por ID: {}", id);
+
+        return pacienteRepository.findById(id)
+                .orElseThrow(() -> new SummerNotFoundException("Paciente com ID " + id + " não encontrado."))
+                .toEntity();
+    }
+
+    public List<PacienteEntity> buscarPacientesPorNome(String nome) {
+
+        if (nome == null || nome.trim().isEmpty()) {
+            logger.warn("Nome vazio fornecido para busca");
+            throw new SummerException("O nome do paciente não pode ser vazio.");
+        }
+
+        logger.info("Buscando pacientes com nome contendo: {}", nome);
+
+        List<Paciente> pacientes = pacienteRepository.buscarPorNome(nome);
+
+        if (pacientes.isEmpty()) {
+            logger.info("Nenhum paciente encontrado com nome: {}", nome);
+            throw new SummerNotFoundException("Nenhum paciente encontrado com o nome: " + nome);
+        }
+
+        logger.info("Pacientes encontrados: {}", pacientes.size());
+
+        return pacientes.stream()
+                .map(Paciente::toEntity)
+                .toList();
     }
 }

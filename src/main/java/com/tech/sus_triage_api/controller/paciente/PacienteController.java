@@ -3,21 +3,19 @@ package com.tech.sus_triage_api.controller.paciente;
 import com.tech.sus_triage_api.controller.paciente.doc.PacienteControllerDoc;
 import com.tech.sus_triage_api.entities.PacienteEntity;
 import com.tech.sus_triage_api.service.paciente.PacienteService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
+import java.util.List;
 
 @RestController
-@RequestMapping("/pacientes")
+@RequestMapping("api/pacientes")
+@Tag(name = "Paciente", description = "APIs para gerenciamento de pacientes")
 public class PacienteController implements PacienteControllerDoc {
 
     private Logger logger = LoggerFactory.getLogger(PacienteController.class);
@@ -51,7 +49,7 @@ public class PacienteController implements PacienteControllerDoc {
     }
 
     @Override
-    @GetMapping("/{id}")
+    @GetMapping("{id}")
     public ResponseEntity<PacienteResponseDTO> obterPacientePorId(@PathVariable Long id) {
         // Implementar lógica para obter paciente por ID
 
@@ -65,6 +63,41 @@ public class PacienteController implements PacienteControllerDoc {
 
         return ResponseEntity.ok(pacienteResponseDTO);
 
+    }
+
+    @Override
+    @PutMapping
+    public ResponseEntity<PacienteResponseDTO> atualizarCoordenadas(
+            @Valid @RequestBody PacienteAtualizacaoDTO pacienteAtualizacaoDTO
+    ) {
+        // Implementar lógica para atualizar coordenadas do paciente
+
+        logger.info("Atualizando coordenadas do paciente com ID: {}, latitude: {}, longitude: {}", pacienteAtualizacaoDTO.id(), pacienteAtualizacaoDTO.latitude(), pacienteAtualizacaoDTO.longitude());
+
+        PacienteEntity pacienteEntity = pacienteService.atualizarCoordenadas(pacienteAtualizacaoDTO.id(), pacienteAtualizacaoDTO.latitude(), pacienteAtualizacaoDTO.longitude());
+
+        PacienteResponseDTO pacienteResponseDTO = pacienteEntity.toResponseDTO();
+
+        logger.info("Coordenadas do paciente atualizadas com sucesso response: {}", pacienteResponseDTO);
+
+        return ResponseEntity.ok(pacienteResponseDTO);
+    }
+
+    @Override
+    @GetMapping("/nome/{nome}")
+    public ResponseEntity<List<PacienteResponseDTO>> buscarPacientesPorNome(@PathVariable String nome) {
+
+        logger.info("Buscando pacientes com nome contendo: {}", nome);
+
+        List<PacienteEntity> pacientes = pacienteService.buscarPacientesPorNome(nome);
+
+        List<PacienteResponseDTO> pacientesResponseDTO = pacientes.stream()
+                .map(PacienteEntity::toResponseDTO)
+                .toList();
+
+        logger.info("Pacientes encontrados: {}", pacientesResponseDTO.size());
+
+        return ResponseEntity.ok(pacientesResponseDTO);
     }
 
 }
