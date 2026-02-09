@@ -559,13 +559,21 @@ Este projeto foi desenvolvido para fins educacionais como parte do Tech Challeng
 
 Desenvolvido por estudantes da Pós-Graduação em Arquitetura e Desenvolvimento Java - FIAP
 
+| Nome | RM |
+|------|-----|
+| Leonardo Felipe Ventura Ferreira | RM363339 |
+| Wagner de Lima Braga Silva | RM364223 |
+| Everton Cristiano de Souza Teixeira | RM362065 |
+
 ---
 
 ### 📞 Suporte
 
 Para dúvidas ou sugestões:
-- 📧 Email: [seu-email@exemplo.com]
-- 🐛 Issues: [GitHub Issues](https://github.com/wagnersistemalima/sus-triage-api/issues)
+- 📧 Email: [leoventura245@gmail.com]
+- 📧 Email: [wagner.sistemalima@gmail.com]
+- 📧 Email: [evertoncsouza@gmail.com]
+- 🐛 Issues: [GitHub Issues](https://github.com/BL7Ki/sus-triage-api/issues)
 
 ---
 
