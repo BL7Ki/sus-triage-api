@@ -144,3 +144,81 @@ Resposta:
 "longitude": -46.6333
 }
 ````
+📐 Diagrama C4
+
+🧩 1. DIAGRAMA DE ARQUITETURA – FLUXO TÉCNICO
+
+
+                         +------------------------+
+                         |     Usuário / Agente   |
+                         |  (Profissional de Saúde)|
+                         +-----------+------------+
+                                     |
+                                     v
+                         +------------------------+
+                         |     API Spring Boot     |
+                         |  - Recebe requisição    |
+                         |  - Valida dados         |
+                         |  - Salva triagem        |
+                         |  - Publica evento       |
+                         +-----------+-------------+
+                               ^     |   \
+                               |     |    \
+                               |     |     \
+                               |     v      v
+                    +--------------------+   +-------------------------+
+                    |   PostgreSQL        |   |       RabbitMQ         |
+                    | - Persiste dados    |   |  - Fila de triagem     |
+                    | - Retorna consultas |   |  - Processamento async  |
+                    +----------+----------+   +------------+------------+
+                               ^                           |
+                               |                           v
+                               |             +-----------------------------+
+                               |             |         Consumer            |
+                               |             | - Processa mensagem         |
+                               +-------------| - Consulta Redis            |
+                                             | - Aloca unidade             |
+                                             | - Atualiza Banco            |
+                                             +--------------+--------------+
+                                                            |
+                                                            v
+                                              +---------------------------+
+                                              +          Redis            |
+                                              | - Cache de disponibilidade|
+                                              +---------------------------+
+
+
+🧱 2. MODELO C4 – NÍVEL 2 (CONTAINER)
+
+Person: Usuario
+Usuário do sistema
+
+Container: API
+Spring Boot 4.0.2 :: Java 21
+Responsável por receber triagens, validar dados, consultar/atualizar banco e
+publicar eventos no RabbitMQ.
+
+Container: PostgreSQL
+Armazena triagens, pacientes, unidades e status.
+
+Container: RabbitMQ
+Broker de mensagens usado para processar triagens de forma assíncrona.
+
+Container: Redis
+Cache de alta performance para disponibilidade de unidades.
+
+Container: Consumer
+Worker responsável por processar triagens, consultar Redis e atualizar o banco.
+
+Relações:
+
+Usuário --> API: Envia dados da triagem
+API --> PostgreSQL: Persiste triagem
+PostgreSQL --> API: Retorno de dados
+API --> RabbitMQ: Publica evento de triagem
+RabbitMQ --> Consumer: Entrega mensagem
+Consumer --> Redis: Consulta disponibilidade
+Consumer --> PostgreSQL: Atualiza dados
+
+
+
