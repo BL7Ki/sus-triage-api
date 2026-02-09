@@ -11,7 +11,7 @@ import org.springframework.transaction.support.TransactionSynchronizationManager
 @Service
 public class TriagemProducer {
 
-    private final RabbitTemplate rabbitTemplate = new RabbitTemplate();
+    private RabbitTemplate rabbitTemplate = new RabbitTemplate();
 
     public TriagemProducer(RabbitTemplate rabbitTemplate) {
         this.rabbitTemplate = rabbitTemplate;

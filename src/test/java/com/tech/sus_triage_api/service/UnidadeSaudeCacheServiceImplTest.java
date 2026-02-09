@@ -1,5 +1,6 @@
 package com.tech.sus_triage_api.service;
 
+import com.tech.sus_triage_api.domain.enums.TipoUnidade;
 import com.tech.sus_triage_api.domain.unidadesaude.UnidadeSaude;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -28,10 +29,10 @@ class UnidadeSaudeCacheServiceImplTest {
 
     @Test
     void testCacheDeUnidadesComVagas() {
-        UnidadeSaude u1 = new UnidadeSaude("UBS Central", "UBS", -23.5, -46.6, 100);
-        UnidadeSaude u2 = new UnidadeSaude("UPA Norte", "UPA", -23.6, -46.7, 80);
+        UnidadeSaude u1 = new UnidadeSaude("UBS Central", TipoUnidade.UBS, -23.5, -46.6, 100);
+        UnidadeSaude u2 = new UnidadeSaude("UPA Norte", TipoUnidade.UPA, -23.6, -46.7, 80);
         List<UnidadeSaude> lista = Arrays.asList(u1, u2);
-        when(unidadeSaudeRepository.findAllComVagas()).thenReturn(lista);
+        when(unidadeSaudeRepository.findComVagasGerais()).thenReturn(lista);
 
         List<UnidadeSaude> result = unidadeSaudeCacheService.getUnidadesComVagas();
         assertEquals(2, result.size());

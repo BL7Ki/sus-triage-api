@@ -20,7 +20,7 @@ public class UnidadeSaudeCacheServiceImpl implements UnidadeSaudeCacheService {
     @Override
     @Cacheable(value = "unidadesComVagas")
     public List<UnidadeSaude> getUnidadesComVagas() {
-        return unidadeSaudeRepository.findAllComVagas();
+        return unidadeSaudeRepository.findComVagasGerais();
     }
 
     @Override
