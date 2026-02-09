@@ -8,6 +8,7 @@ import com.tech.sus_triage_api.repository.paciente.PacienteRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -22,6 +23,7 @@ public class PacienteService {
         this.pacienteRepository = pacienteRepository;
     }
 
+    @Transactional
     public PacienteEntity criarPaciente(PacienteEntity pacienteEntity) {
 
         logger.info("Criando paciente: {}", pacienteEntity);
@@ -40,6 +42,7 @@ public class PacienteService {
         return pacienteCriado.toEntity();
     }
 
+    @Transactional
     public PacienteEntity atualizarCoordenadas(Long id, Double latitude, Double longitude) {
 
         Paciente paciente = pacienteRepository.findById(id)
@@ -56,6 +59,7 @@ public class PacienteService {
         return pacienteAtualizado.toEntity();
     }
 
+    @Transactional(readOnly = true)
     public PacienteEntity obterPacientePorId(Long id) {
 
         logger.info("Buscando paciente por ID: {}", id);
@@ -65,6 +69,7 @@ public class PacienteService {
                 .toEntity();
     }
 
+    @Transactional(readOnly = true)
     public List<PacienteEntity> buscarPacientesPorNome(String nome) {
 
         if (nome == null || nome.trim().isEmpty()) {
