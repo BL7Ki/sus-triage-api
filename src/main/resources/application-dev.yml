@@ -8,11 +8,18 @@ spring:
     username: sa
     password:
 
+  # Configuração para carregar os scripts H2
+  sql:
+    init:
+      platform: h2
+      mode: always
+
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
     database-platform: org.hibernate.dialect.H2Dialect
     show-sql: true
+    defer-datasource-initialization: true # Garante que os dados entrem após as tabelas
     properties:
       hibernate:
         format_sql: true
