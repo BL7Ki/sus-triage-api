@@ -1,5 +1,6 @@
 package com.tech.sus_triage_api.domain.unidadesaude;
 
+import com.tech.sus_triage_api.domain.enums.TipoUnidade;
 import jakarta.persistence.*;
 
 @Entity
@@ -10,11 +11,12 @@ public class UnidadeSaude {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false, unique = true)
     private String nome; // Ex: UPA Zona Sul
 
-    private String tipo; // Hospital, UPA, UBS
+    @Enumerated(EnumType.STRING)
+    private TipoUnidade tipo; // Hospital, UPA, UBS
 
-    // Localização da Unidade (para o cálculo de distância)
     private Double latitude;
     private Double longitude;
 
@@ -26,9 +28,17 @@ public class UnidadeSaude {
         return ocupacaoAtual < capacidadeTotal;
     }
 
+    public void adicionarPaciente() {
+        if (this.ocupacaoAtual < this.capacidadeTotal) {
+            this.ocupacaoAtual++;
+        } else {
+            throw new IllegalStateException("Unidade sem capacidade disponível.");
+        }
+    }
+
     public UnidadeSaude() {}
 
-    public UnidadeSaude(String nome, String tipo, Double latitude, Double longitude, Integer capacidadeTotal) {
+    public UnidadeSaude(String nome, TipoUnidade tipo, Double latitude, Double longitude, Integer capacidadeTotal) {
         this.nome = nome;
         this.tipo = tipo;
         this.latitude = latitude;
@@ -38,7 +48,7 @@ public class UnidadeSaude {
 
     public Long getId() { return id; }
     public String getNome() { return nome; }
-    public String getTipo() { return tipo; }
+    public TipoUnidade getTipo() { return tipo; }
     public Double getLatitude() { return latitude; }
     public Double getLongitude() { return longitude; }
     public Integer getCapacidadeTotal() { return capacidadeTotal; }

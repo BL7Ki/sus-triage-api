@@ -8,7 +8,7 @@ import com.tech.sus_triage_api.repository.paciente.PacienteRepository;
 import com.tech.sus_triage_api.repository.triagem.TriagemRepository;
 import com.tech.sus_triage_api.service.rabbitmq.TriagemProducer;
 import com.tech.sus_triage_api.service.strategy.ITriagemStrategy;
-import jakarta.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
 
 @Service
