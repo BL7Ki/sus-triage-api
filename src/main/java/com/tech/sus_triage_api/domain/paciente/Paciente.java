@@ -1,16 +1,9 @@
 package com.tech.sus_triage_api.domain.paciente;
 
-import com.tech.sus_triage_api.entities.PacienteEntity;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@Data
 @Entity
 @Table(name = "pacientes")
-@AllArgsConstructor
-@NoArgsConstructor
 public class Paciente {
 
     @Id
@@ -23,18 +16,24 @@ public class Paciente {
     @Column(nullable = false, unique = true)
     private String cpf;
 
-    // Simplificação: Latitude/Longitude simulada do endereço do paciente
     private Double latitude;
     private Double longitude;
 
-    public PacienteEntity toEntity() {
+    public Paciente() {}
 
-        return new PacienteEntity(
-            this.id,
-            this.nome,
-            this.cpf,
-            this.latitude,
-            this.longitude
-        );
+    public Paciente(String nome, String cpf) {
+        this.nome = nome;
+        this.cpf = cpf;
     }
+
+    public void atualizarCoordenadas(Double latitude, Double longitude) {
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
+
+    public Long getId() { return id; }
+    public String getNome() { return nome; }
+    public String getCpf() { return cpf; }
+    public Double getLatitude() { return latitude; }
+    public Double getLongitude() { return longitude; }
 }
