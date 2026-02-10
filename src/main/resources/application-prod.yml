@@ -30,6 +30,13 @@ spring:
     port: 5672
     username: guest
     password: guest
+    listener:
+      simple:
+        retry:
+          enabled: true # resiliencia
+          initial-interval: 3000ms
+          max-attempts: 3
+          multiplier: 2.0
 
   # Configuração do Redis
   data:
