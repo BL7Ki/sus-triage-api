@@ -1,8 +1,8 @@
 package com.tech.sus_triage_api.controller.paciente.doc;
 
-import com.tech.sus_triage_api.controller.paciente.PacienteAtualizacaoDTO;
-import com.tech.sus_triage_api.controller.paciente.PacienteRequestDTO;
-import com.tech.sus_triage_api.controller.paciente.PacienteResponseDTO;
+import com.tech.sus_triage_api.dto.paciente.PacienteAtualizacaoDTO;
+import com.tech.sus_triage_api.dto.paciente.PacienteRequestDTO;
+import com.tech.sus_triage_api.dto.paciente.PacienteResponseDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;

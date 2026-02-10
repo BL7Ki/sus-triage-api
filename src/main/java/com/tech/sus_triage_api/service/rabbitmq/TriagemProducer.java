@@ -2,7 +2,7 @@ package com.tech.sus_triage_api.service.rabbitmq;
 
 import com.tech.sus_triage_api.config.RabbitMQConfig;
 import com.tech.sus_triage_api.domain.triagem.Triagem;
-import com.tech.sus_triage_api.dto.TriagemEventoDTO;
+import com.tech.sus_triage_api.dto.triagem.TriagemEventoDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;

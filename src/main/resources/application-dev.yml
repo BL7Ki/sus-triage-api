@@ -16,7 +16,7 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: none
+      ddl-auto: create-drop
     database-platform: org.hibernate.dialect.H2Dialect
     show-sql: true
     defer-datasource-initialization: true # Garante que os dados entrem após as tabelas

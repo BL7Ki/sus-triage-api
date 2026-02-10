@@ -5,10 +5,45 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3783575c-0271-45a1-8c3d-5ac45c3f7f8f" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tech/sus_triage_api/SusTriageApiApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tech/sus_triage_api/SusTriageApiApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tech/sus_triage_api/repository/unidadesaude/UnidadeSaudeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tech/sus_triage_api/repository/unidadesaude/UnidadeSaudeRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tech/sus_triage_api/controller/paciente/PacienteAtualizacaoDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tech/sus_triage_api/dto/paciente/PacienteAtualizacaoDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tech/sus_triage_api/controller/paciente/PacienteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tech/sus_triage_api/controller/paciente/PacienteController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tech/sus_triage_api/controller/paciente/PacienteRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tech/sus_triage_api/dto/paciente/PacienteRequestDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tech/sus_triage_api/controller/paciente/PacienteResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tech/sus_triage_api/dto/paciente/PacienteResponseDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tech/sus_triage_api/controller/paciente/doc/PacienteControllerDoc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tech/sus_triage_api/controller/paciente/doc/PacienteControllerDoc.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tech/sus_triage_api/controller/triagem/TriagemController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tech/sus_triage_api/controller/triagem/TriagemController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tech/sus_triage_api/controller/triagem/doc/TriagemControllerDoc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tech/sus_triage_api/controller/triagem/doc/TriagemControllerDoc.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tech/sus_triage_api/domain/triagem/Triagem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tech/sus_triage_api/domain/triagem/Triagem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tech/sus_triage_api/dto/TriagemDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tech/sus_triage_api/dto/triagem/TriagemDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tech/sus_triage_api/dto/TriagemEventoDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tech/sus_triage_api/dto/triagem/TriagemEventoDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tech/sus_triage_api/entities/PacienteEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tech/sus_triage_api/entities/PacienteEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tech/sus_triage_api/service/TriagemService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tech/sus_triage_api/service/TriagemService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/tech/sus_triage_api/service/rabbitmq/TriagemConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tech/sus_triage_api/service/rabbitmq/TriagemConsumer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tech/sus_triage_api/service/rabbitmq/TriagemProducer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tech/sus_triage_api/service/rabbitmq/TriagemProducer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tech/sus_triage_api/service/strategy/ITriagemStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tech/sus_triage_api/service/strategy/ITriagemStrategy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tech/sus_triage_api/service/strategy/ProtocoloManchesterStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tech/sus_triage_api/service/strategy/ProtocoloManchesterStrategy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application-dev.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application-dev.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application-prod.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application-prod.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/tech/sus_triage_api/SusTriageApiApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/tech/sus_triage_api/SusTriageApiApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/tech/sus_triage_api/config/RabbitMQConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/tech/sus_triage_api/config/RabbitMQConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/tech/sus_triage_api/controller/triagem/TriagemController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/tech/sus_triage_api/controller/triagem/TriagemController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/tech/sus_triage_api/dto/TriagemDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/tech/sus_triage_api/dto/TriagemDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/tech/sus_triage_api/repository/unidadesaude/UnidadeSaudeRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/tech/sus_triage_api/repository/unidadesaude/UnidadeSaudeRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/tech/sus_triage_api/service/TriagemService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/tech/sus_triage_api/service/TriagemService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/tech/sus_triage_api/service/paciente/PacienteService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/tech/sus_triage_api/service/paciente/PacienteService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/tech/sus_triage_api/service/rabbitmq/TriagemConsumer$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/tech/sus_triage_api/service/rabbitmq/TriagemConsumer$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/tech/sus_triage_api/service/rabbitmq/TriagemConsumer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/tech/sus_triage_api/service/rabbitmq/TriagemConsumer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/tech/sus_triage_api/service/rabbitmq/TriagemProducer$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/tech/sus_triage_api/service/rabbitmq/TriagemProducer$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/tech/sus_triage_api/service/rabbitmq/TriagemProducer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/tech/sus_triage_api/service/rabbitmq/TriagemProducer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/data-h2.sql" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/data-h2.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/data-postgres.sql" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/data-postgres.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/sus-triage-api-0.0.1-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/sus-triage-api-0.0.1-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/sus-triage-api-0.0.1-SNAPSHOT.jar.original" beforeDir="false" afterPath="$PROJECT_DIR$/target/sus-triage-api-0.0.1-SNAPSHOT.jar.original" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +79,9 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Spring Boot.SusTriageApiApplication.executor": "Run",
     "git-widget-placeholder": "feature/Leo",
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.0",
@@ -55,6 +92,27 @@
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="SusTriageApiApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UnknownPolicyInFreeMode" />
+      <module name="sus-triage-api" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.tech.sus_triage_api.SusTriageApiApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.tech.sus_triage_api.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Spring Boot.SusTriageApiApplication" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="TaskManager">
     <servers />

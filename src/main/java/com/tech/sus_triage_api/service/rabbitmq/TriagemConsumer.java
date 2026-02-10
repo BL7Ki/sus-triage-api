@@ -6,7 +6,7 @@ import com.tech.sus_triage_api.domain.enums.StatusTriagem;
 import com.tech.sus_triage_api.domain.enums.TipoUnidade;
 import com.tech.sus_triage_api.domain.triagem.Triagem;
 import com.tech.sus_triage_api.domain.unidadesaude.UnidadeSaude;
-import com.tech.sus_triage_api.dto.TriagemEventoDTO;
+import com.tech.sus_triage_api.dto.triagem.TriagemEventoDTO;
 import com.tech.sus_triage_api.repository.triagem.TriagemRepository;
 import com.tech.sus_triage_api.repository.unidadesaude.UnidadeSaudeRepository;
 import com.tech.sus_triage_api.util.GeoUtils;

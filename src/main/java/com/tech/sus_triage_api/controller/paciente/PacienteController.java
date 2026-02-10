@@ -1,6 +1,9 @@
 package com.tech.sus_triage_api.controller.paciente;
 
 import com.tech.sus_triage_api.controller.paciente.doc.PacienteControllerDoc;
+import com.tech.sus_triage_api.dto.paciente.PacienteAtualizacaoDTO;
+import com.tech.sus_triage_api.dto.paciente.PacienteRequestDTO;
+import com.tech.sus_triage_api.dto.paciente.PacienteResponseDTO;
 import com.tech.sus_triage_api.entities.PacienteEntity;
 import com.tech.sus_triage_api.service.paciente.PacienteService;
 import io.swagger.v3.oas.annotations.tags.Tag;

@@ -1,7 +1,7 @@
 package com.tech.sus_triage_api.controller.triagem.doc;
 
 import com.tech.sus_triage_api.domain.triagem.Triagem;
-import com.tech.sus_triage_api.dto.TriagemDTO;
+import com.tech.sus_triage_api.dto.triagem.TriagemDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
