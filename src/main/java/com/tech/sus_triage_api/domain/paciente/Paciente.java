@@ -1,5 +1,6 @@
 package com.tech.sus_triage_api.domain.paciente;
 
+import com.tech.sus_triage_api.entities.PacienteEntity;
 import jakarta.persistence.*;
 
 @Entity
@@ -26,6 +27,14 @@ public class Paciente {
         this.cpf = cpf;
     }
 
+    public Paciente(Long id, String nome, String cpf, Double latitude, Double longitude) {
+        this.id = id;
+        this.nome = nome;
+        this.cpf = cpf;
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
+
     public void atualizarCoordenadas(Double latitude, Double longitude) {
         this.latitude = latitude;
         this.longitude = longitude;
@@ -36,4 +45,15 @@ public class Paciente {
     public String getCpf() { return cpf; }
     public Double getLatitude() { return latitude; }
     public Double getLongitude() { return longitude; }
+
+    public PacienteEntity toEntity() {
+
+        return new PacienteEntity(
+                this.id,
+                this.nome,
+                this.cpf,
+                this.latitude,
+                this.longitude
+        );
+    }
 }

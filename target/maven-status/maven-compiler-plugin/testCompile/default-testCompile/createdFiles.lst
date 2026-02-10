@@ -1,0 +1,4 @@
+com\tech\sus_triage_api\errors\CustomExceptionHandlerTest.class
+com\tech\sus_triage_api\service\paciente\PacienteServiceTest.class
+com\tech\sus_triage_api\controller\paciente\PacienteControllerTest.class
+com\tech\sus_triage_api\SusTriageApiApplicationTests.class

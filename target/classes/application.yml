@@ -1,0 +1,5 @@
+spring:
+  profiles:
+    active: dev # Ativa o perfil de desenvolvimento (application-dev.yml)
+  application:
+    name: sus-triage-api
