@@ -1,146 +1,181 @@
-# sus-triage-api
-Tech Challenge 5 - Hackaton
+```markdown
+# Sistema susflow - Regulação Inteligente de Urgências (SUS)
+### Tech Challenge 5 - Hackathon | Pós-Graduação em Arquitetura e Desenvolvimento Java
+
+---
+
+## 📑 Índice
+
+- [Sobre o Projeto](#-sobre-o-projeto)
+- [Diferenciais de Arquitetura](#-diferenciais-de-arquitetura)
+- [Tecnologias Utilizadas](#-tecnologias-utilizadas)
+- [Arquitetura e Fluxo](#-arquitetura-e-fluxo)
+- [Estrutura de Pastas](#-estrutura-de-pastas)
+- [Como Executar](#-como-executar-o-projeto)
+- [Endpoints da API](#-endpoints-da-api)
+- [Critérios de Classificação de Risco](#-critérios-de-classificação-de-risco)
+- [Documentação Interativa](#-documentação-interativa)
+- [Monitoramento e Observabilidade](#-monitoramento-e-observabilidade)
+- [Autores](#-autores)
 
 ---
 
 ## 📋 Sobre o Projeto
 
-Este projeto foi desenvolvido como parte do **Tech Challenge 5 - Hackathon** da pós-graduação em **Arquitetura e Desenvolvimento Java**, com foco em **inovação para otimização de atendimento no SUS**.
+O **Sistema susflow** é uma solução de backend robusta desenvolvida para otimizar a regulação de urgências e emergências no SUS. O foco principal é a automação da triagem clínica e a alocação inteligente de pacientes baseada em **geolocalização e gravidade**.
 
-### 🎯 Problema Abordado
+### 🎯 O Problema
+A regulação de leitos no SUS muitas vezes enfrenta atrasos devido a processos manuais. Em cenários de crise (ex: acidentes com múltiplas vítimas), a falta de um sistema resiliente pode levar à perda de dados críticos e atrasos fatais no socorro.
 
-O sistema visa resolver o problema de **triagem e acolhimento inteligente** nas unidades de saúde do SUS, auxiliando na:
-
-- ✅ **Priorização de atendimentos** com base na gravidade dos sintomas
-- ✅ **Redução da superlotação** através de direcionamento eficiente
-- ✅ **Atendimento rápido** para pacientes em situação de emergência
-- ✅ **Melhoria da eficiência operacional** dos profissionais de saúde
-- ✅ **Transparência** no processo de triagem e atendimento
-- ✅ **Melhor experiência** para pacientes e colaboradores do SUS
-
-### 💡 Solução Proposta
-
-Sistema backend robusto que implementa:
-- Classificação automática de risco baseada em sintomas e sinais vitais
-- Priorização inteligente de atendimentos seguindo protocolos médicos
-- API RESTful para integração com diferentes front-ends
-
-### 📁 Estrutura de Pastas
-
-### 🔄 Fluxo de Dados
-
-1. **Cliente** → Faz requisição HTTP para a API
-2. **Controller** → Recebe e valida a requisição
-3. **Service** → Processa a lógica de negócio (classificação de risco)
-4. **Repository** → Persiste ou recupera dados
-5. **Response** → Retorna resultado ao cliente
+### 💡 A Solução
+- ✅ **Triagem Automatizada:** Implementação do Protocolo de Manchester.
+- ✅ **Regulação Geográfica:** Alocação automática na unidade de saúde mais próxima (UBS, UPA ou Hospital) com vaga disponível.
+- ✅ **Resiliência:** Uso de mensageria para garantir que nenhum atendimento seja perdido em picos de demanda.
 
 ---
 
-## 📦 Pré-requisitos
+## 🌟 Diferenciais de Arquitetura
 
-Antes de executar o projeto, certifique-se de ter instalado:
+Para atingir o nível de maturidade exigido em sistemas críticos, implementamos:
 
-### Obrigatórios
-- ☕ **Java 21** ou superior ([Download](https://www.oracle.com/java/technologies/downloads/))
-- 📦 **Maven 3.9+** ([Download](https://maven.apache.org/download.cgi))
+1.  **Event-Driven Architecture (RabbitMQ):** Desacoplamento entre a triagem e a alocação. Em um acidente de ônibus, por exemplo, o sistema recebe centenas de requisições e as processa de forma ordenada sem travar.
+2.  **Strategy Pattern:** Facilita a expansão do protocolo de triagem (ex: adicionar regras específicas para pandemias) sem alterar o código existente.
+3.  **Cache Distribuído (Redis):** Otimização da busca geográfica de Unidades de Saúde, reduzindo a carga no banco de dados principal e garantindo respostas em microsegundos.
+4.  **Fila de Espera Crítica:** Pacientes graves sem vaga imediata são movidos para uma fila prioritária monitorada por gestores em tempo real.
 
-### Opcionais (mas recomendados)
-- 🐳 **Docker** ([Download](https://www.docker.com/get-started))
-- 🐋 **Docker Compose** (incluído no Docker Desktop)
-- 📝 **IDE** (IntelliJ IDEA, Eclipse, VS Code)
+---
 
-### Verificar instalação
+## 🛠️ Tecnologias Utilizadas
 
-```bash
-# Verificar versão do Java
-java -version
+- **Java 21** & **Spring Boot 3.x**
+- **PostgreSQL** (Persistência relacional)
+- **H2 Database** (Desenvolvimento ágil)
+- **RabbitMQ** (Mensageria e Resiliência)
+- **Redis** (Cache de geolocalização)
+- **Swagger/OpenAPI 3** (Documentação)
+- **Docker & Docker Compose** (Containerização)
+- **Spring Boot Actuator** (Observabilidade)
 
-# Verificar versão do Maven
-mvn -version
+---
 
-# Verificar versão do Docker
-docker --version
-docker-compose --version
+## 🏗️ Arquitetura e Fluxo
+
+```mermaid
+graph TD
+    A[Client/Ambulância] -->|POST /triagem| B(API Controller)
+    B --> C{Strategy Classificação}
+    C -->|Risco Definido| D[RabbitMQ: triagem.pendente]
+    D --> E[Consumer: Alocação Inteligente]
+    E --> F{Tem Vaga?}
+    F -->|Sim| G[Aloca na Unidade + Próxima]
+    F -->|Não| H[Fila de Espera Crítica]
+    E -.-> I[Redis: Cache Unidades]
+    G --> J[(PostgreSQL)]
 
 ```
----## 🚀 Como Executar o Projeto
 
-# 1. Clone o repositório
-git clone https://github.com/wagnersistemalima/sus-triage-api.git
-cd sus-triage-api
+---
 
-# 2. Compile o projeto
-mvn clean install
+## 🚀 Como Executar o Projeto
 
-# 3. Execute a aplicação
-mvn spring-boot:run
+### Opção 1: Docker Compose (Recomendado)
 
-# Ou execute o JAR gerado
-java -jar target/sus-triage-api-0.0.1-SNAPSHOT.jar
+Esta opção sobe toda a infraestrutura (API, Postgres, RabbitMQ, Redis) de forma integrada.
 
-# Opção 2: Com Docker
+1. **Gere o artefato da aplicação:**
+```bash
+mvn clean package -DskipTests
 
-# 1. Build da imagem Docker
-docker build -t sus-triage-api:latest .
+```
 
-# 2. Executar container
-docker run -p 8080:8080 sus-triage-api:latest
 
-# 3. Verificar container em execução
-docker ps
+2. **Suba os containers:**
+```bash
+docker-compose up --build -d
 
-# Opção 3: Com Docker Compose (Recomendado para Produção)
+```
 
-# 1. Subir todos os serviços
-docker-compose up -d
 
-# 2. Ver logs em tempo real
-docker-compose logs -f
+3. **Acesse a API em:** `http://localhost:8080`
 
-# 3. Verificar status dos serviços
-docker-compose ps
+### Opção 2: Execução Local (Perfil Dev)
 
-# 4. Parar serviços
-docker-compose down
+Utiliza o banco H2 em memória e requer que você tenha RabbitMQ e Redis rodando localmente (ou via Docker).
 
-# 5. Rebuild e restart
-docker-compose up -d --build
+```bash
+mvn spring-boot:run -Dspring-boot.run.profiles=dev
 
-# A aplicação estará disponível em: http://localhost:8080
+```
+
+---
 
 ## 📡 Endpoints da API
 
-# 🏥 Health Check
+### 👤 Gestão de Pacientes
 
-GET /actuator/health
+| Método | Endpoint | Descrição |
+| --- | --- | --- |
+| `POST` | `/api/pacientes` | Registra um novo paciente (Valida CPF) |
+| `GET` | `/api/pacientes/{id}` | Busca detalhes do paciente |
+| `PUT` | `/api/pacientes` | Atualiza latitude/longitude |
+| `GET` | `/api/pacientes/nome/{nome}` | Busca parcial por nome |
 
-Resposta:
-````
+### 🚨 Triagem de Pacientes
+
+| Método | Endpoint | Descrição |
+| --- | --- | --- |
+| `POST` | `/api/triagem` | Inicia triagem assíncrona baseada em sinais vitais |
+
+**Exemplo de Request de Triagem:**
+
+```json
 {
-"status": "UP"
+  "cpfPaciente": "12345678901",
+  "sintomas": "Dor no peito, falta de ar",
+  "pressaoSistolica": 190,
+  "pressaoDiastolica": 110,
+  "temperatura": 37.0,
+  "batimentos": 115,
+  "saturacao": 88
 }
 
-````
+```
 
-## criar um novo paciente:
-POST /api/pacientes
-Request Body:
-````
-{
-"nome": "João Silva",
-"cpf": "123.456.789-00",
-"latitude": -23.5505,
-"longitude": -46.6333
-}
+---
 
-Resposta:
-````
-{
-"id": 1,
-"nome": "João Silva",
-"cpf": "123.456.789-00",
-"latitude": -23.5505,
-"longitude": -46.6333
-}
-````
+## 📊 Critérios de Classificação de Risco
+
+Baseado no Protocolo de Manchester simplificado:
+
+| Parâmetro | Emergência (Vermelho) | Muito Urgente (Laranja) |
+| --- | --- | --- |
+| **Saturação O₂** | < 90% | 90% - 92% |
+| **Pressão Sist.** | > 180 mmHg | 160 - 179 mmHg |
+| **Temperatura** | > 39.5°C | 38.5 - 39.4°C |
+
+---
+
+## 📖 Documentação Interativa
+
+Acesse o Swagger UI para testar os endpoints em tempo real:
+👉 [http://localhost:8080/swagger-ui.html](https://www.google.com/search?q=http://localhost:8080/swagger-ui.html)
+
+---
+
+## 📈 Monitoramento e Observabilidade
+
+A aplicação expõe métricas de saúde e performance via Spring Actuator:
+
+* **Health Check:** `http://localhost:8080/actuator/health`
+* **Métricas:** `http://localhost:8080/actuator/metrics`
+
+---
+
+## 👥 Autores
+
+* **Leonardo Felipe Ventura Ferreira** - RM363339
+* **Wagner de Lima Braga Silva** - RM364223
+* **Everton Cristiano de Souza Teixeira** - RM362065
+
+---
+```
