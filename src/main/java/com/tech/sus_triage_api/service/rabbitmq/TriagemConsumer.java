@@ -65,7 +65,7 @@ public class TriagemConsumer {
 
         // Algoritmo de Distância entre as unidades filtradas
         UnidadeSaude unidadeDestino = unidadesDisponiveis.stream()
-                .min(Comparator.comparingDouble(u -> calcularDistancia(
+                .min(Comparator.comparingDouble(u -> GeoUtils.haversine(
                         triagem.getPaciente().getLatitude(), triagem.getPaciente().getLongitude(),
                         u.getLatitude(), u.getLongitude()
                 )))
@@ -89,10 +89,5 @@ public class TriagemConsumer {
             case VERDE -> List.of(TipoUnidade.UBS, TipoUnidade.UPA);
             case AZUL -> List.of(TipoUnidade.UBS);
         };
-    }
-
-    private double calcularDistancia(double lat1, double lon1, double lat2, double lon2) {
-        // Cálculo simples de distância Euclidiana (pode ser evoluído para Haversine)
-        return Math.sqrt(Math.pow(lat2 - lat1, 2) + Math.pow(lon2 - lon1, 2));
     }
 }
