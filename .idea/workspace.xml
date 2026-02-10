@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b08e17a4-a8d5-487f-8af7-d5bde45908b0" name="Changes" comment="" />
+    <list default="true" id="b08e17a4-a8d5-487f-8af7-d5bde45908b0" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/resources/data-h2.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/data-h2.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/data-postgres.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/data-postgres.sql" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
