@@ -178,4 +178,3 @@ A aplicação expõe métricas de saúde e performance via Spring Actuator:
 * **Everton Cristiano de Souza Teixeira** - RM362065
 
 ---
-```
