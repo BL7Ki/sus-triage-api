@@ -9,6 +9,7 @@ import com.tech.sus_triage_api.domain.unidadesaude.UnidadeSaude;
 import com.tech.sus_triage_api.dto.TriagemEventoDTO;
 import com.tech.sus_triage_api.repository.triagem.TriagemRepository;
 import com.tech.sus_triage_api.repository.unidadesaude.UnidadeSaudeRepository;
+import com.tech.sus_triage_api.util.GeoUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
