@@ -14,7 +14,8 @@ public record TriagemResponseDTO(
         StatusTriagem status,
         LocalDateTime dataHora,
         String mensagem,
-        String urlConsulta
+        String urlConsulta,
+        UnidadeSaudeResponseDTO unidadeDestino
 ) {
     public static TriagemResponseDTO fromTriagem(Triagem triagem) {
         String mensagem = triagem.getStatus() == StatusTriagem.PENDENTE_ALOCACAO
@@ -31,8 +32,8 @@ public record TriagemResponseDTO(
             triagem.getStatus(),
             triagem.getDataHora(),
             mensagem,
-            urlConsulta
+            urlConsulta,
+            UnidadeSaudeResponseDTO.fromUnidade(triagem.getUnidadeDestino())
         );
     }
 }
-

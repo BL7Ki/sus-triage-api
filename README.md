@@ -281,7 +281,8 @@ Content-Type: application/json
   "status": "PENDENTE_ALOCACAO",
   "dataHora": "2026-02-11T10:30:00",
   "mensagem": "Triagem registrada com sucesso. A alocação da unidade de saúde está sendo processada",
-  "urlConsulta": "/api/triagem/1"
+  "urlConsulta": "/api/triagem/1",
+  "unidadeDestino": null
 }
 ```
 
@@ -313,7 +314,16 @@ GET http://localhost:8081/api/triagem/1
   "status": "ALOCADA",
   "dataHora": "2026-02-11T10:30:00",
   "mensagem": "Triagem processada com sucesso.",
-  "urlConsulta": "/api/triagem/1"
+  "urlConsulta": "/api/triagem/1",
+  "unidadeDestino": {
+    "id": 1,
+    "nome": "Hospital Central H2",
+    "tipo": "HOSPITAL",
+    "latitude": -23.56,
+    "longitude": -46.65,
+    "capacidadeTotal": 10,
+    "ocupacaoAtual": 4
+  }
 }
 ```
 
@@ -419,7 +429,8 @@ Registra triagem de paciente e inicia alocação assíncrona.
   "status": "PENDENTE_ALOCACAO",
   "dataHora": "2026-02-11T10:30:00",
   "mensagem": "Triagem registrada com sucesso. A alocação da unidade de saúde está sendo processada",
-  "urlConsulta": "/api/triagem/2"
+  "urlConsulta": "/api/triagem/2",
+  "unidadeDestino": null
 }
 ```
 
@@ -436,7 +447,16 @@ Consulta resultado da triagem (incluindo unidade alocada).
   "status": "ALOCADA",
   "dataHora": "2026-02-11T10:30:00",
   "mensagem": "Triagem processada com sucesso.",
-  "urlConsulta": "/api/triagem/2"
+  "urlConsulta": "/api/triagem/2",
+  "unidadeDestino": {
+    "id": 2,
+    "nome": "UPA Zona Sul",
+    "tipo": "UPA",
+    "latitude": -23.55,
+    "longitude": -46.63,
+    "capacidadeTotal": 15,
+    "ocupacaoAtual": 7
+  }
 }
 ```
 
@@ -446,7 +466,6 @@ Consulta resultado da triagem (incluindo unidade alocada).
 #### **GET** `/api/pacientes/{id}` - Buscar por ID
 #### **GET** `/api/pacientes/cpf/{cpf}` - Buscar por CPF
 #### **PUT** `/api/pacientes/{id}` - Atualizar Paciente
-#### **DELETE** `/api/pacientes/{id}` - Remover Paciente
 
 ---
 
