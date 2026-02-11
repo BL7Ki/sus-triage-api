@@ -500,6 +500,45 @@ Login: guest / guest
 - Consumers ativos
 - Taxa de mensagens processadas
 
+### ✅ DLQ (Dead Letter Queue)
+
+**Quando a DLQ é acionada:**
+- Se o consumer lançar exceção e o retry estourar o limite (3 tentativas), a mensagem é rejeitada sem requeue e vai para `triagem.dlq`.
+- A fila `triagem.espera.critica` não é DLQ; ela é usada manualmente quando não há vagas.
+
+**Como simular a DLQ (mensagem inválida):**
+```bash
+# Descubra o container do RabbitMQ
+# (procure pelo serviço do RabbitMQ)
+docker compose ps
+```
+
+```bash
+# Publique uma mensagem inválida direto na fila
+# Substitua NOME_CONTAINER_RABBIT pelo container correto
+docker exec -it NOME_CONTAINER_RABBIT rabbitmqadmin publish routing_key=triagem.pendente payload="isso-nao-e-json"
+```
+
+```bash
+# Verifique os logs da aplicação (3 tentativas + erro)
+docker compose logs -f sus-triage-api
+```
+
+```bash
+# Confirme a mensagem na DLQ
+docker exec -it NOME_CONTAINER_RABBIT rabbitmqadmin list queues name messages
+```
+
+### 🚨 Fila `triagem.espera.critica` (Sem Vagas)
+
+**Quando é utilizada:**
+- Se não houver unidades disponíveis para o risco calculado, o evento é enviado para `triagem.espera.critica`.
+- Isso representa um caso crítico de negócio (não é erro técnico e não usa a DLQ).
+
+**Exemplo de cenário:**
+- Um paciente classificado como `VERMELHO` chega, mas todas as unidades do tipo `HOSPITAL` estão com capacidade máxima.
+- O consumer não consegue alocar e envia o evento para `triagem.espera.critica` para acompanhamento.
+
 ### Spring Boot Actuator
 ```
 URL: http://localhost:8081/actuator
