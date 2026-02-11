@@ -356,7 +356,9 @@ cd sus-triage-api
 ### 2️⃣ Inicie os Serviços (Docker Compose)
 
 ```bash
-docker-compose up -d
+# Build da imagem e subida dos containers
+# (recomendado quando houver alterações no código)
+docker compose up --build -d
 ```
 
 **Serviços iniciados:**
@@ -364,7 +366,19 @@ docker-compose up -d
 - 🐘 PostgreSQL (porta 5432)
 - 🔴 Redis (porta 6379)
 
-### 3️⃣ Compile e Execute a Aplicação
+### 3️⃣ Logs da Aplicação (Docker)
+
+```bash
+# Logs da aplicação pelo Docker Compose
+docker compose logs -f sus-triage-api
+```
+
+```bash
+# Logs direto no container (ajuste o nome se necessário)
+docker logs -f sus_api
+```
+
+### 4️⃣ Compile e Execute a Aplicação
 
 **Opção A: Com Maven**
 ```bash
@@ -377,7 +391,7 @@ java -jar target/sus-triage-api-0.0.1-SNAPSHOT.jar --spring.profiles.active=dev 
 mvn spring-boot:run -Dspring-boot.run.profiles=dev
 ```
 
-### 4️⃣ Verifique a Aplicação
+### 5️⃣ Verifique a Aplicação
 
 ```bash
 # Health Check
@@ -643,4 +657,3 @@ Esta solução demonstra:
 ---
 
 ⭐ **Desenvolvido com dedicação para o Tech Challenge 5 - FIAP 2026**
-
