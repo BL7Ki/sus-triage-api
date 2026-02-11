@@ -61,7 +61,7 @@ public interface TriagemControllerDoc {
                     description = "Triagem encontrada",
                     content = @Content(
                             mediaType = "application/json",
-                            schema = @Schema(implementation = Triagem.class)
+                            schema = @Schema(implementation = TriagemResponseDTO.class)
                     )
             ),
             @ApiResponse(
@@ -70,5 +70,5 @@ public interface TriagemControllerDoc {
                     content = @Content(mediaType = "application/json")
             )
     })
-    ResponseEntity<Triagem> buscarTriagem(@PathVariable Long id);
+    ResponseEntity<TriagemResponseDTO> buscarTriagem(@PathVariable Long id);
 }

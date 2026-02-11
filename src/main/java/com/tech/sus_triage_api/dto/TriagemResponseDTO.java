@@ -18,7 +18,7 @@ public record TriagemResponseDTO(
 ) {
     public static TriagemResponseDTO fromTriagem(Triagem triagem) {
         String mensagem = triagem.getStatus() == StatusTriagem.PENDENTE_ALOCACAO
-            ? "Triagem registrada com sucesso. A alocação da unidade de saúde está sendo processada em segundo plano via RabbitMQ."
+            ? "Triagem registrada com sucesso. A alocação da unidade de saúde está sendo processada"
             : "Triagem processada com sucesso.";
 
         String urlConsulta = "/api/triagem/" + triagem.getId();

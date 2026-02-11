@@ -38,8 +38,9 @@ public class TriagemController implements TriagemControllerDoc {
 
     @Override
     @GetMapping("/{id}")
-    public ResponseEntity<Triagem> buscarTriagem(@PathVariable Long id) {
+    public ResponseEntity<TriagemResponseDTO> buscarTriagem(@PathVariable Long id) {
         Triagem triagem = triagemService.buscarTriagemPorId(id);
-        return ResponseEntity.ok(triagem);
+        TriagemResponseDTO response = TriagemResponseDTO.fromTriagem(triagem);
+        return ResponseEntity.ok(response);
     }
 }

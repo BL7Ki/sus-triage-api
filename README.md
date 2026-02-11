@@ -280,7 +280,7 @@ Content-Type: application/json
   "risco": "LARANJA",
   "status": "PENDENTE_ALOCACAO",
   "dataHora": "2026-02-11T10:30:00",
-  "mensagem": "Triagem registrada com sucesso. A alocação da unidade de saúde está sendo processada em segundo plano via RabbitMQ.",
+  "mensagem": "Triagem registrada com sucesso. A alocação da unidade de saúde está sendo processada",
   "urlConsulta": "/api/triagem/1"
 }
 ```
@@ -307,29 +307,13 @@ GET http://localhost:8081/api/triagem/1
 ```json
 {
   "id": 1,
-  "paciente": {
-    "id": 1,
-    "nome": "João Silva",
-    "cpf": "12345678901",
-    "latitude": -23.5505,
-    "longitude": -46.6333
-  },
+  "nomePaciente": "João Silva",
+  "cpfPaciente": "12345678901",
   "risco": "LARANJA",
   "status": "ALOCADA",
-  "batimentosPorMinuto": 110,
-  "saturacaoOxigenio": 92,
-  "temperatura": 39.5,
-  "sintomas": "Febre alta",
   "dataHora": "2026-02-11T10:30:00",
-  "unidadeDestino": {
-    "id": 1,
-    "nome": "Hospital Central H2",
-    "tipo": "HOSPITAL",
-    "latitude": -23.56,
-    "longitude": -46.65,
-    "capacidadeTotal": 10,
-    "ocupacaoAtual": 3
-  }
+  "mensagem": "Triagem processada com sucesso.",
+  "urlConsulta": "/api/triagem/1"
 }
 ```
 
@@ -430,9 +414,11 @@ Registra triagem de paciente e inicia alocação assíncrona.
 {
   "id": 2,
   "nomePaciente": "Maria Santos",
+  "cpfPaciente": "98765432100",
   "risco": "AMARELO",
   "status": "PENDENTE_ALOCACAO",
-  "mensagem": "Triagem registrada com sucesso. A alocação da unidade de saúde está sendo processada em segundo plano via RabbitMQ.",
+  "dataHora": "2026-02-11T10:30:00",
+  "mensagem": "Triagem registrada com sucesso. A alocação da unidade de saúde está sendo processada",
   "urlConsulta": "/api/triagem/2"
 }
 ```
@@ -444,13 +430,13 @@ Consulta resultado da triagem (incluindo unidade alocada).
 ```json
 {
   "id": 2,
-  "paciente": { ... },
+  "nomePaciente": "Maria Santos",
+  "cpfPaciente": "98765432100",
   "risco": "AMARELO",
   "status": "ALOCADA",
-  "unidadeDestino": {
-    "nome": "UPA Zona Sul",
-    "tipo": "UPA"
-  }
+  "dataHora": "2026-02-11T10:30:00",
+  "mensagem": "Triagem processada com sucesso.",
+  "urlConsulta": "/api/triagem/2"
 }
 ```
 
