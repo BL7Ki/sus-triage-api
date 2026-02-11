@@ -4,7 +4,7 @@ spring:
 
   # Configuração do Banco de Dados (PostgreSQL)
   datasource:
-    url: jdbc:postgresql://localhost:5432/sus_triage_db
+    url: jdbc:postgresql://sus_postgres:5432/sus_triage_db
     username: sus_user
     password: sus_password
     driver-class-name: org.postgresql.Driver
@@ -12,11 +12,13 @@ spring:
   sql:
     init:
       platform: postgresql
-      mode: always # Executa o schema-h2.sql e data-h2.sql sempre que subir
+      mode: always # Executa os scripts do Postgres sempre que subir
+      schema-locations: classpath:schema-postgres.sql
+      data-locations: classpath:data-postgres.sql
 
   jpa:
     hibernate:
-      ddl-auto: none # 'none' para não conflitar com o schema-h2.sql
+      ddl-auto: none # 'none' para não conflitar com o schema-postgres.sql
     show-sql: true
     defer-datasource-initialization: true # Espera o Hibernate validar para rodar os dados
     properties:
