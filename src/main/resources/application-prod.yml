@@ -35,6 +35,8 @@ spring:
     virtual-host: /
     listener:
       simple:
+        concurrency: 5        # Produção: mínimo de 5 consumers
+        max-concurrency: 20   # Escala até 20 se houver carga alta
         retry:
           enabled: true
           max-attempts: 3

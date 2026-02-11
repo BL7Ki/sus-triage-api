@@ -1,11 +1,13 @@
 package com.tech.sus_triage_api.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.tech.sus_triage_api.domain.enums.Risco;
 import com.tech.sus_triage_api.domain.enums.StatusTriagem;
 import com.tech.sus_triage_api.domain.triagem.Triagem;
 
 import java.time.LocalDateTime;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public record TriagemResponseDTO(
         Long id,
         String nomePaciente,

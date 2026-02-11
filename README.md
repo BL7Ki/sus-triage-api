@@ -89,6 +89,40 @@ Otimizar o processo de **triagem e alocação** nas unidades de saúde através 
 - ✅ Retry automático em caso de falha
 - ✅ Preparado para ambiente de produção
 
+**Como Funciona o Processamento Paralelo:**
+
+A aplicação está configurada para processar múltiplas mensagens simultaneamente através de:
+
+1. **Múltiplos Threads na Mesma Instância**
+   - **Dev:** 3 a 10 consumers simultâneos
+   - **Prod:** 5 a 20 consumers simultâneos
+   - Spring AMQP ajusta dinamicamente conforme a carga
+
+2. **Múltiplas Instâncias (Horizontal Scaling)**
+   ```bash
+   # Escalar para 3 instâncias no Docker Compose
+   docker compose up --scale sus-triage-api=3 -d
+   ```
+   - RabbitMQ distribui mensagens entre todas as instâncias
+   - Cada instância pode ter até 20 consumers (em prod)
+   - **Capacidade total:** 3 instâncias × 20 consumers = **60 triagens simultâneas**
+
+3. **Combinação (Máxima Escalabilidade)**
+   - Escalar horizontalmente (mais containers)
+   - Cada container com múltiplos threads
+   - Tolerância a falhas: se 1 container cair, os outros continuam
+
+**Configuração Atual:**
+```yaml
+# application-dev.yml
+concurrency: 3        # Mínimo de 3 threads
+max-concurrency: 10   # Até 10 threads sob carga
+
+# application-prod.yml
+concurrency: 5        # Mínimo de 5 threads
+max-concurrency: 20   # Até 20 threads sob carga
+```
+
 ### 3️⃣ **Observabilidade Completa**
 
 - ✅ Logs estruturados em cada etapa do processo
@@ -281,8 +315,7 @@ Content-Type: application/json
   "status": "PENDENTE_ALOCACAO",
   "dataHora": "2026-02-11T10:30:00",
   "mensagem": "Triagem registrada com sucesso. A alocação da unidade de saúde está sendo processada",
-  "urlConsulta": "/api/triagem/1",
-  "unidadeDestino": null
+  "urlConsulta": "/api/triagem/1"
 }
 ```
 
@@ -429,8 +462,7 @@ Registra triagem de paciente e inicia alocação assíncrona.
   "status": "PENDENTE_ALOCACAO",
   "dataHora": "2026-02-11T10:30:00",
   "mensagem": "Triagem registrada com sucesso. A alocação da unidade de saúde está sendo processada",
-  "urlConsulta": "/api/triagem/2",
-  "unidadeDestino": null
+  "urlConsulta": "/api/triagem/2"
 }
 ```
 
@@ -557,6 +589,49 @@ docker exec -it NOME_CONTAINER_RABBIT rabbitmqadmin list queues name messages
 **Exemplo de cenário:**
 - Um paciente classificado como `VERMELHO` chega, mas todas as unidades do tipo `HOSPITAL` estão com capacidade máxima.
 - O consumer não consegue alocar e envia o evento para `triagem.espera.critica` para acompanhamento.
+
+### 🔄 Verificando Múltiplos Consumers
+
+O Docker Compose já está configurado para **produção** com **5 a 20 consumers simultâneos** por instância.
+
+**Ver Consumers Ativos:**
+```bash
+# Via RabbitMQ Management UI (Recomendado)
+# Acesse: http://localhost:15672 (guest/guest)
+# Vá em: Queues → triagem.pendente → Consumers
+
+# Via Linha de Comando
+docker exec -it sus_rabbitmq rabbitmqadmin list queues name consumers
+```
+
+**Exemplo de Output (1 instância em prod):**
+```
++------------------+-----------+
+| name             | consumers |
++------------------+-----------+
+| triagem.pendente | 5         |
+| triagem.dlq      | 0         |
++------------------+-----------+
+```
+→ **5 consumers** = configuração mínima de prod
+
+**Escalar Horizontalmente (Opcional):**
+```bash
+# Escalar para 3 instâncias (15-60 consumers no total)
+docker compose up --build --scale sus-triage-api=3 -d
+
+# Verificar consumers (deve mostrar 15-60)
+docker exec -it sus_rabbitmq rabbitmqadmin list queues name consumers
+```
+
+**Monitorar em Tempo Real:**
+```bash
+# Logs da aplicação
+docker compose logs -f sus-triage-api
+
+# Estatísticas das filas
+docker exec -it sus_rabbitmq rabbitmqadmin list queues name messages consumers
+```
 
 ### Spring Boot Actuator
 ```
