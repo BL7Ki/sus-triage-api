@@ -1,0 +1,38 @@
+package com.tech.sus_triage_api.dto;
+
+import com.tech.sus_triage_api.domain.enums.Risco;
+import com.tech.sus_triage_api.domain.enums.StatusTriagem;
+import com.tech.sus_triage_api.domain.triagem.Triagem;
+
+import java.time.LocalDateTime;
+
+public record TriagemResponseDTO(
+        Long id,
+        String nomePaciente,
+        String cpfPaciente,
+        Risco risco,
+        StatusTriagem status,
+        LocalDateTime dataHora,
+        String mensagem,
+        String urlConsulta
+) {
+    public static TriagemResponseDTO fromTriagem(Triagem triagem) {
+        String mensagem = triagem.getStatus() == StatusTriagem.PENDENTE_ALOCACAO
+            ? "Triagem registrada com sucesso. A alocação da unidade de saúde está sendo processada em segundo plano via RabbitMQ."
+            : "Triagem processada com sucesso.";
+
+        String urlConsulta = "/api/triagem/" + triagem.getId();
+
+        return new TriagemResponseDTO(
+            triagem.getId(),
+            triagem.getPaciente().getNome(),
+            triagem.getPaciente().getCpf(),
+            triagem.getRisco(),
+            triagem.getStatus(),
+            triagem.getDataHora(),
+            mensagem,
+            urlConsulta
+        );
+    }
+}
+
