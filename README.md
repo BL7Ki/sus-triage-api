@@ -477,7 +477,7 @@ curl -X POST http://localhost:8081/api/triagem \
 ```bash
 curl http://localhost:8081/api/triagem/X
 ```
-→ Response com `unidadeDestino` preenchido
+→ Response com `status: ALOCADA` e mensagem de conclusão
 
 #### 3. Destacar Benefícios (60s)
 - ✅ Response instantâneo mesmo com processamento complexo
