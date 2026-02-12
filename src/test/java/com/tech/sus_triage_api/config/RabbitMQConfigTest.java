@@ -2,7 +2,6 @@ package com.tech.sus_triage_api.config;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.amqp.core.DirectExchange;
-import org.springframework.amqp.core.Queue;
 import static org.junit.jupiter.api.Assertions.*;
 
 class RabbitMQConfigTest {
