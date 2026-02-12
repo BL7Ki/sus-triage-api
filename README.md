@@ -1,5 +1,3 @@
----
-
 ```markdown
 # 🏥 SUS Triage API - Sistema Inteligente de Triagem e Alocação
 
@@ -251,7 +249,7 @@ O sistema implementa padrões de resiliência para produção:
 
 Desenvolvido com dedicação para o Tech Challenge 5 - FIAP 2026.
 
-* **Membros:** 
+* **Membros:**
 Leonardo Felipe Ventura Ferreira - RM363339
 Wagner de Lima Braga Silva - RM364223
 Everton Cristiano de Souza Teixeira - RM362065
@@ -261,6 +259,5 @@ Everton Cristiano de Souza Teixeira - RM362065
 ---
 
 ```
-
 
 ```
