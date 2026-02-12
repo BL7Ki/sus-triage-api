@@ -1,3 +1,5 @@
+---
+
 ```markdown
 # 🏥 SUS Triage API - Sistema Inteligente de Triagem e Alocação
 
@@ -257,7 +259,5 @@ Everton Cristiano de Souza Teixeira - RM362065
 * **Licença:** Educational
 
 ---
-
-```
 
 ```
