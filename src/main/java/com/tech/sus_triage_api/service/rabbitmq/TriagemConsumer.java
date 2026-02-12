@@ -3,6 +3,7 @@ package com.tech.sus_triage_api.service.rabbitmq;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tech.sus_triage_api.config.RabbitMQConfig;
 import com.tech.sus_triage_api.domain.enums.Risco;
+import com.tech.sus_triage_api.domain.enums.StatusTriagem; // Certifique-se de ter esse import
 import com.tech.sus_triage_api.domain.enums.TipoUnidade;
 import com.tech.sus_triage_api.domain.triagem.Triagem;
 import com.tech.sus_triage_api.domain.unidadesaude.UnidadeSaude;
@@ -68,6 +69,14 @@ public class TriagemConsumer {
             Triagem triagem = triagemRepository.findById(evento.triagemId())
                     .orElseThrow(() -> new RuntimeException("Triagem não encontrada: " + evento.triagemId()));
 
+            if (triagem.getStatus() == StatusTriagem.ALOCADO && triagem.getUnidadeDestino() != null) {
+                logger.warn("⚠️ [IDEMPOTÊNCIA] Evento duplicado ignorado! Triagem ID {} já foi alocada na unidade: {}",
+                        triagem.getId(), triagem.getUnidadeDestino().getNome());
+                System.out.println("⚠️ [IDEMPOTÊNCIA] Ignorando mensagem duplicada para Triagem ID: " + triagem.getId());
+
+                return;
+            }
+
             logger.info("Triagem encontrada no BD: ID={}, Paciente={}", triagem.getId(), triagem.getPaciente().getNome());
 
             List<TipoUnidade> tiposAdequados = determinarTiposPorRisco(triagem.getRisco());
@@ -82,7 +91,7 @@ public class TriagemConsumer {
                 rabbitTemplate.convertAndSend(RabbitMQConfig.QUEUE_ESPERA_CRITICA, evento);
                 return;
             }
-
+            
             UnidadeSaude unidadeDestino = unidadesDisponiveis.stream()
                     .min(Comparator.comparingDouble(u -> calcularDistancia(
                             triagem.getPaciente().getLatitude(), triagem.getPaciente().getLongitude(),
@@ -109,7 +118,6 @@ public class TriagemConsumer {
         } catch (Exception e) {
             logger.error("❌ ERRO ao processar alocação: {}", e.getMessage(), e);
             System.err.println("[CONSUMER] ERRO: " + e.getMessage());
-            e.printStackTrace();
             throw e;
         }
     }
@@ -124,6 +132,8 @@ public class TriagemConsumer {
         };
     }
 
+    // Fórmula de distância Euclidiana (para simplificar POC)
+    // Para produção real, usaríamos Haversine completo
     private double calcularDistancia(double lat1, double lon1, double lat2, double lon2) {
         return Math.sqrt(Math.pow(lat2 - lat1, 2) + Math.pow(lon2 - lon1, 2));
     }
