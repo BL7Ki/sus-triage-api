@@ -10,6 +10,7 @@ import com.tech.sus_triage_api.domain.unidadesaude.UnidadeSaude;
 import com.tech.sus_triage_api.dto.triagem.TriagemEventoDTO;
 import com.tech.sus_triage_api.repository.triagem.TriagemRepository;
 import com.tech.sus_triage_api.repository.unidadesaude.UnidadeSaudeRepository;
+import com.tech.sus_triage_api.util.GeoUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
@@ -91,9 +92,9 @@ public class TriagemConsumer {
                 rabbitTemplate.convertAndSend(RabbitMQConfig.QUEUE_ESPERA_CRITICA, evento);
                 return;
             }
-            
+
             UnidadeSaude unidadeDestino = unidadesDisponiveis.stream()
-                    .min(Comparator.comparingDouble(u -> calcularDistancia(
+                    .min(Comparator.comparingDouble(u -> GeoUtils.haversine(
                             triagem.getPaciente().getLatitude(), triagem.getPaciente().getLongitude(),
                             u.getLatitude(), u.getLongitude()
                     )))
@@ -130,11 +131,5 @@ public class TriagemConsumer {
             case VERDE -> List.of(TipoUnidade.UBS, TipoUnidade.UPA);
             case AZUL -> List.of(TipoUnidade.UBS);
         };
-    }
-
-    // Fórmula de distância Euclidiana (para simplificar POC)
-    // Para produção real, usaríamos Haversine completo
-    private double calcularDistancia(double lat1, double lon1, double lat2, double lon2) {
-        return Math.sqrt(Math.pow(lat2 - lat1, 2) + Math.pow(lon2 - lon1, 2));
     }
 }
