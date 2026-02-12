@@ -44,6 +44,7 @@ public class UnidadeSaude {
         this.latitude = latitude;
         this.longitude = longitude;
         this.capacidadeTotal = capacidadeTotal;
+        this.ocupacaoAtual = 0; 
     }
 
     public Long getId() { return id; }
