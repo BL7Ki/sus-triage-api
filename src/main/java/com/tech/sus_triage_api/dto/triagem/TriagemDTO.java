@@ -1,4 +1,4 @@
-package com.tech.sus_triage_api.dto;
+package com.tech.sus_triage_api.dto.triagem;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;

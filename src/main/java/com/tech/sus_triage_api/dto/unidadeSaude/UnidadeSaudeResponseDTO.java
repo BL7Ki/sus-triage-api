@@ -1,4 +1,4 @@
-package com.tech.sus_triage_api.dto;
+package com.tech.sus_triage_api.dto.unidadeSaude;
 
 import com.tech.sus_triage_api.domain.enums.TipoUnidade;
 import com.tech.sus_triage_api.domain.unidadesaude.UnidadeSaude;

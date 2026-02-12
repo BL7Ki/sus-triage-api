@@ -1,4 +1,4 @@
-package com.tech.sus_triage_api.dto;
+package com.tech.sus_triage_api.dto.triagem;
 
 import com.tech.sus_triage_api.domain.enums.Risco;
 import java.io.Serializable;

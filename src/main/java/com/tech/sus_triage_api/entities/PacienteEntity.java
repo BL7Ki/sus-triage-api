@@ -1,6 +1,6 @@
 package com.tech.sus_triage_api.entities;
 
-import com.tech.sus_triage_api.controller.paciente.PacienteResponseDTO;
+import com.tech.sus_triage_api.dto.paciente.PacienteResponseDTO;
 import com.tech.sus_triage_api.domain.paciente.Paciente;
 
 public class PacienteEntity {

@@ -1,4 +1,4 @@
-package com.tech.sus_triage_api.controller.paciente;
+package com.tech.sus_triage_api.dto.paciente;
 
 
 public record PacienteResponseDTO(

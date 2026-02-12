@@ -2,8 +2,8 @@ package com.tech.sus_triage_api.controller.triagem;
 
 import com.tech.sus_triage_api.controller.triagem.doc.TriagemControllerDoc;
 import com.tech.sus_triage_api.domain.triagem.Triagem;
-import com.tech.sus_triage_api.dto.TriagemDTO;
-import com.tech.sus_triage_api.dto.TriagemResponseDTO;
+import com.tech.sus_triage_api.dto.triagem.TriagemDTO;
+import com.tech.sus_triage_api.dto.triagem.TriagemResponseDTO;
 import com.tech.sus_triage_api.service.TriagemService;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;

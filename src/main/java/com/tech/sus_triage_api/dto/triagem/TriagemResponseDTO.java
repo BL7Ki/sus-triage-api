@@ -1,9 +1,10 @@
-package com.tech.sus_triage_api.dto;
+package com.tech.sus_triage_api.dto.triagem;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.tech.sus_triage_api.domain.enums.Risco;
 import com.tech.sus_triage_api.domain.enums.StatusTriagem;
 import com.tech.sus_triage_api.domain.triagem.Triagem;
+import com.tech.sus_triage_api.dto.unidadeSaude.UnidadeSaudeResponseDTO;
 
 import java.time.LocalDateTime;
 

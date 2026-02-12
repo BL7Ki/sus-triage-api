@@ -1,4 +1,4 @@
-package com.tech.sus_triage_api.controller.paciente;
+package com.tech.sus_triage_api.dto.paciente;
 
 import com.tech.sus_triage_api.entities.PacienteEntity;
 import jakarta.validation.constraints.NotBlank;
