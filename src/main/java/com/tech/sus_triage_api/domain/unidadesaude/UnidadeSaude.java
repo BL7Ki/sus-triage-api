@@ -29,6 +29,9 @@ public class UnidadeSaude {
     }
 
     public void adicionarPaciente() {
+        if (this.ocupacaoAtual == null) {
+            this.ocupacaoAtual = 0;
+        }
         if (this.ocupacaoAtual < this.capacidadeTotal) {
             this.ocupacaoAtual++;
         } else {
@@ -44,7 +47,6 @@ public class UnidadeSaude {
         this.latitude = latitude;
         this.longitude = longitude;
         this.capacidadeTotal = capacidadeTotal;
-        this.ocupacaoAtual = 0; 
     }
 
     public Long getId() { return id; }

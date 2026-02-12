@@ -17,6 +17,17 @@ class UnidadeSaudeTest {
     }
 
     @Test
+    void construtorCompletoFunciona() {
+        UnidadeSaude unidade = new UnidadeSaude("UBS Central", com.tech.sus_triage_api.domain.enums.TipoUnidade.UBS, 10.0, 20.0, 5);
+        assertNull(unidade.getId());
+        assertEquals("UBS Central", unidade.getNome());
+        assertEquals(com.tech.sus_triage_api.domain.enums.TipoUnidade.UBS, unidade.getTipo());
+        assertEquals(10.0, unidade.getLatitude());
+        assertEquals(20.0, unidade.getLongitude());
+        assertEquals(5, unidade.getCapacidadeTotal());
+    }
+
+    @Test
     void temVagaRetornaTrueQuandoOcupacaoMenorQueCapacidade() {
         UnidadeSaude unidade = new UnidadeSaude("UBS Central", TipoUnidade.UBS, 10.0, 20.0, 5);
         for (int i = 0; i < 3; i++) {
