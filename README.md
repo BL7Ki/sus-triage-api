@@ -166,7 +166,7 @@ max-concurrency: 20   # Até 20 threads sob carga
 * ✅ RabbitMQ Management UI para visualização de filas
 * ✅ Rastreamento end-to-end de requisições
 
-### 5️⃣ **Aderência ao Mundo Real**
+### 6️⃣ **Aderência ao Mundo Real**
 
 - ✅ Reflete processos reais de triagem do SUS
 - ✅ Separação entre triagem e alocação (como no SUS real)
@@ -835,12 +835,13 @@ Write-Host "Unidade: $($triagemFinal.unidadeDestino.nome)"
 
 ## 👥 Equipe
 
-Desenvolvido por estudantes da **Pós-Graduação em Arquitetura e Desenvolvimento Java - FIAP**
+Desenvolvido com dedicação por alunos da **Pós-Graduação em Arquitetura e Desenvolvimento Java — FIAP**.
 
-- **Membros:**
-Leonardo Felipe Ventura Ferreira - RM363339 
-Wagner de Lima Braga Silva - RM364223 
-Everton Cristiano de Souza Teixeira - RM362065
+| Nome | RM | GitHub                                                                                 |
+| --- | --- |----------------------------------------------------------------------------------------|
+| **Leonardo Felipe Ventura Ferreira** | 363339 | [BL7Ki](https://www.google.com/search?q=https://github.com/BL7Ki)                      |
+| **Wagner de Lima Braga Silva** | 364223 | [wagner](https://github.com/wagnersistemalima)                                         |
+| **Everton Cristiano de Souza Teixeira** | 362065 | [evertonteixeira](https://www.google.com/search?q=https://github.com/evertoncsteixeira) |
 
 ---
 
