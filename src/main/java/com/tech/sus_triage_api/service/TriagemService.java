@@ -3,11 +3,12 @@ package com.tech.sus_triage_api.service;
 import com.tech.sus_triage_api.domain.enums.Risco;
 import com.tech.sus_triage_api.domain.paciente.Paciente;
 import com.tech.sus_triage_api.domain.triagem.Triagem;
-import com.tech.sus_triage_api.dto.TriagemDTO;
+import com.tech.sus_triage_api.dto.triagem.TriagemDTO;
 import com.tech.sus_triage_api.repository.paciente.PacienteRepository;
 import com.tech.sus_triage_api.repository.triagem.TriagemRepository;
 import com.tech.sus_triage_api.service.rabbitmq.TriagemProducer;
 import com.tech.sus_triage_api.service.strategy.ITriagemStrategy;
+import com.tech.sus_triage_api.errors.SummerNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.transaction.annotation.Transactional;
@@ -59,5 +60,11 @@ public class TriagemService {
         logger.info("Evento de triagem enviado para fila RabbitMQ para paciente nome: {}, risco classificado como: {}", dto.nomePaciente(), risco);
 
         return salva;
+    }
+
+    @Transactional
+    public Triagem buscarTriagemPorId(Long id) {
+        return triagemRepository.findById(id)
+                .orElseThrow(() -> new SummerNotFoundException("Triagem com ID " + id + " não encontrada."));
     }
 }

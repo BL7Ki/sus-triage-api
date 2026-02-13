@@ -35,6 +35,18 @@ spring:
     port: 5672
     username: guest
     password: guest
+    virtual-host: /
+    listener:
+      simple:
+        concurrency: 3        # Mínimo de 3 consumers simultâneos
+        max-concurrency: 10   # Escala até 10 consumers se necessário
+        retry:
+          enabled: true
+          max-attempts: 3
+          initial-interval: 2000
+          multiplier: 2.0
+          max-interval: 10000
+        default-requeue-rejected: false
 
   # Configuração do Redis
   data:
@@ -53,3 +65,10 @@ springdoc:
 
 server:
   port: 8081
+
+logging:
+  level:
+    org.springframework.amqp: DEBUG
+    org.springframework.amqp.rabbit.listener: DEBUG
+    com.tech.sus_triage_api.service.rabbitmq: DEBUG
+    org.springframework.rabbit: DEBUG

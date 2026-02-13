@@ -1,7 +1,7 @@
 package com.tech.sus_triage_api.service.strategy;
 
 import com.tech.sus_triage_api.domain.enums.Risco;
-import com.tech.sus_triage_api.dto.TriagemDTO;
+import com.tech.sus_triage_api.dto.triagem.TriagemDTO;
 import org.springframework.stereotype.Component;
 
 @Component
