@@ -1,0 +1,57 @@
+spring:
+  application:
+    name: sus-triage-api
+
+  # Configuração do Banco de Dados (PostgreSQL)
+  datasource:
+    url: jdbc:postgresql://sus_postgres:5432/sus_triage_db
+    username: sus_user
+    password: sus_password
+    driver-class-name: org.postgresql.Driver
+
+  sql:
+    init:
+      platform: postgresql
+      mode: always # Executa os scripts do Postgres sempre que subir
+      schema-locations: classpath:schema-postgres.sql
+      data-locations: classpath:data-postgres.sql
+
+  jpa:
+    hibernate:
+      ddl-auto: none # 'none' para não conflitar com o schema-postgres.sql
+    show-sql: true
+    defer-datasource-initialization: true # Espera o Hibernate validar para rodar os dados
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  # Configuração do RabbitMQ
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+    virtual-host: /
+    listener:
+      simple:
+        concurrency: 5        # Produção: mínimo de 5 consumers
+        max-concurrency: 20   # Escala até 20 se houver carga alta
+        retry:
+          enabled: true
+          max-attempts: 3
+          initial-interval: 2000
+          multiplier: 2.0
+          max-interval: 10000
+        default-requeue-rejected: false
+
+  # Configuração do Redis
+  data:
+    redis:
+      host: localhost
+      port: 6379
+
+# Configuração do Swagger
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
