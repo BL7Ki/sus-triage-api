@@ -1,4 +1,4 @@
-package com.tech.sus_triage_api.dto;
+package com.tech.sus_triage_api.dto.triagem;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -9,7 +9,7 @@ class TriagemDTOTest {
     void construtorEGettersFuncionam() {
         TriagemDTO dto = new TriagemDTO(
                 "Carlos",
-                "12345678900",
+                "123.456.789-00",
                 10.0,
                 20.0,
                 "Dor de cabeça",
@@ -20,7 +20,7 @@ class TriagemDTOTest {
                 98
         );
         assertEquals("Carlos", dto.nomePaciente());
-        assertEquals("12345678900", dto.cpfPaciente());
+        assertEquals("123.456.789-00", dto.cpfPaciente());
         assertEquals(10.0, dto.latitude());
         assertEquals(20.0, dto.longitude());
         assertEquals("Dor de cabeça", dto.sintomas());
