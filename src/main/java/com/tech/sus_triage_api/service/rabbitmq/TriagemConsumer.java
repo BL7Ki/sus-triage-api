@@ -3,12 +3,14 @@ package com.tech.sus_triage_api.service.rabbitmq;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tech.sus_triage_api.config.RabbitMQConfig;
 import com.tech.sus_triage_api.domain.enums.Risco;
+import com.tech.sus_triage_api.domain.enums.StatusTriagem; // Certifique-se de ter esse import
 import com.tech.sus_triage_api.domain.enums.TipoUnidade;
 import com.tech.sus_triage_api.domain.triagem.Triagem;
 import com.tech.sus_triage_api.domain.unidadesaude.UnidadeSaude;
-import com.tech.sus_triage_api.dto.TriagemEventoDTO;
+import com.tech.sus_triage_api.dto.triagem.TriagemEventoDTO;
 import com.tech.sus_triage_api.repository.triagem.TriagemRepository;
 import com.tech.sus_triage_api.repository.unidadesaude.UnidadeSaudeRepository;
+import com.tech.sus_triage_api.util.GeoUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
@@ -68,6 +70,14 @@ public class TriagemConsumer {
             Triagem triagem = triagemRepository.findById(evento.triagemId())
                     .orElseThrow(() -> new RuntimeException("Triagem não encontrada: " + evento.triagemId()));
 
+            if (triagem.getStatus() == StatusTriagem.ALOCADO && triagem.getUnidadeDestino() != null) {
+                logger.warn("⚠️ [IDEMPOTÊNCIA] Evento duplicado ignorado! Triagem ID {} já foi alocada na unidade: {}",
+                        triagem.getId(), triagem.getUnidadeDestino().getNome());
+                System.out.println("⚠️ [IDEMPOTÊNCIA] Ignorando mensagem duplicada para Triagem ID: " + triagem.getId());
+
+                return;
+            }
+
             logger.info("Triagem encontrada no BD: ID={}, Paciente={}", triagem.getId(), triagem.getPaciente().getNome());
 
             List<TipoUnidade> tiposAdequados = determinarTiposPorRisco(triagem.getRisco());
@@ -84,7 +94,7 @@ public class TriagemConsumer {
             }
 
             UnidadeSaude unidadeDestino = unidadesDisponiveis.stream()
-                    .min(Comparator.comparingDouble(u -> calcularDistancia(
+                    .min(Comparator.comparingDouble(u -> GeoUtils.haversine(
                             triagem.getPaciente().getLatitude(), triagem.getPaciente().getLongitude(),
                             u.getLatitude(), u.getLongitude()
                     )))
@@ -109,7 +119,6 @@ public class TriagemConsumer {
         } catch (Exception e) {
             logger.error("❌ ERRO ao processar alocação: {}", e.getMessage(), e);
             System.err.println("[CONSUMER] ERRO: " + e.getMessage());
-            e.printStackTrace();
             throw e;
         }
     }
@@ -122,9 +131,5 @@ public class TriagemConsumer {
             case VERDE -> List.of(TipoUnidade.UBS, TipoUnidade.UPA);
             case AZUL -> List.of(TipoUnidade.UBS);
         };
-    }
-
-    private double calcularDistancia(double lat1, double lon1, double lat2, double lon2) {
-        return Math.sqrt(Math.pow(lat2 - lat1, 2) + Math.pow(lon2 - lon1, 2));
     }
 }

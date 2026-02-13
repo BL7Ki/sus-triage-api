@@ -3,7 +3,7 @@ package com.tech.sus_triage_api.service;
 import com.tech.sus_triage_api.domain.enums.Risco;
 import com.tech.sus_triage_api.domain.paciente.Paciente;
 import com.tech.sus_triage_api.domain.triagem.Triagem;
-import com.tech.sus_triage_api.dto.TriagemDTO;
+import com.tech.sus_triage_api.dto.triagem.TriagemDTO;
 import com.tech.sus_triage_api.repository.paciente.PacienteRepository;
 import com.tech.sus_triage_api.repository.triagem.TriagemRepository;
 import com.tech.sus_triage_api.service.rabbitmq.TriagemProducer;

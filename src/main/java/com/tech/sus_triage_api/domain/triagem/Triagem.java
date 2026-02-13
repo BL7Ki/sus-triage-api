@@ -4,7 +4,7 @@ import com.tech.sus_triage_api.domain.enums.Risco;
 import com.tech.sus_triage_api.domain.enums.StatusTriagem;
 import com.tech.sus_triage_api.domain.unidadesaude.UnidadeSaude;
 import com.tech.sus_triage_api.domain.paciente.Paciente;
-import com.tech.sus_triage_api.dto.TriagemDTO;
+import com.tech.sus_triage_api.dto.triagem.TriagemDTO;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 

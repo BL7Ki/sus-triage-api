@@ -1,15 +1,18 @@
---- INSERÇÃO DE UNIDADES DE SAÚDE ---
+--- INSERÇÃO DE UNIDADES DE SAÚDE (POSTGRES)
 INSERT INTO unidades_saude (nome, tipo, latitude, longitude, capacidade_total, ocupacao_atual)
 VALUES
     ('Hospital Metropolitano Central', 'HOSPITAL', -23.5600, -46.6500, 10, 2),
     ('Hospital do Coração (LOTADO)', 'HOSPITAL', -23.5550, -46.6600, 3, 3),
+    ('Hospital das Clínicas', 'HOSPITAL', -23.5575, -46.6717, 100, 10),
+    ('Hospital Albert Einstein', 'HOSPITAL', -23.5999, -46.7155, 100, 20),
     ('UPA 24h Ipiranga', 'UPA', -23.5900, -46.6100, 8, 4),
+    ('UPA Vergueiro', 'UPA', -23.5684, -46.6358, 50, 5),
     ('UBS Posto da Sé', 'UBS', -23.5489, -46.6388, 50, 5),
-    ('UBS Jardim das Flores', 'UBS', -23.6500, -46.7000, 30, 2)
+    ('UBS Jardim das Flores', 'UBS', -23.6500, -46.7000, 30, 2),
+    ('UBS Santa Cecília', 'UBS', -23.5395, -46.6493, 30, 2)
     ON CONFLICT (nome) DO NOTHING;
 
-
---- INSERÇÃO DE PACIENTES ---
+--- INSERÇÃO DE PACIENTES (POSTGRES)
 INSERT INTO pacientes (nome, cpf, latitude, longitude)
 VALUES
     ('João Silva', '12345678901', -23.5610, -46.6510),
