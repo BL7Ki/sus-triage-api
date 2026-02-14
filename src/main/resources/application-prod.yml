@@ -4,7 +4,7 @@ spring:
 
   # Configuração do Banco de Dados (PostgreSQL)
   datasource:
-    url: jdbc:postgresql://sus_postgres:5432/sus_triage_db
+    url: jdbc:postgresql://localhost:5432/sus_triage_db
     username: sus_user
     password: sus_password
     driver-class-name: org.postgresql.Driver
