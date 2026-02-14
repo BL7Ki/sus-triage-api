@@ -1,5 +1,6 @@
 package com.tech.sus_triage_api.dto;
 
+import com.tech.sus_triage_api.dto.triagem.TriagemDTO;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
