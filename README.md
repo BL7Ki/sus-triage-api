@@ -1,29 +1,32 @@
 # 🏥 SUS Triage API - Sistema Inteligente de Triagem e Alocação
 
-> **Tech Challenge 5 - Hackathon FIAP 2026**  
-> Pós-Graduação em Arquitetura e Desenvolvimento Java
-
-[![Java](https://img.shields.io/badge/Java-21-orange.svg)](https://www.oracle.com/java/)
-[![Spring Boot](https://img.shields.io/badge/Spring%20Boot-4.0.2-brightgreen.svg)](https://spring.io/projects/spring-boot)
-[![RabbitMQ](https://img.shields.io/badge/RabbitMQ-3.13-orange.svg)](https://www.rabbitmq.com/)
-[![Docker](https://img.shields.io/badge/Docker-Ready-blue.svg)](https://www.docker.com/)
-[![License](https://img.shields.io/badge/License-Educational-blue.svg)](LICENSE)
+> **Tech Challenge 5 - Hackathon FIAP 2026** > Pós-Graduação em Arquitetura e Desenvolvimento Java
 
 ---
 
 ## 📑 Índice
 
-- [Sobre o Projeto](#-sobre-o-projeto)
-- [Diferenciais Técnicos](#-diferenciais-técnicos)
-- [Tecnologias Utilizadas](#-tecnologias-utilizadas)
-- [Arquitetura](#-arquitetura)
-- [Fluxo de Processamento](#-fluxo-de-processamento)
-- [Pré-requisitos](#-pré-requisitos)
-- [Como Executar](#-como-executar)
-- [Endpoints da API](#-endpoints-da-api)
-- [Demonstração](#-demonstração)
-- [Monitoramento](#-monitoramento)
-- [Equipe](#-equipe)
+* [Sobre o Projeto](https://www.google.com/search?q=%23-sobre-o-projeto)
+* [Diferenciais Técnicos](https://www.google.com/search?q=%23-diferenciais-t%C3%A9cnicos)
+* [Tecnologias Utilizadas](https://www.google.com/search?q=%23-tecnologias-utilizadas)
+* [Arquitetura](https://www.google.com/search?q=%23-arquitetura)
+* [Fluxo de Processamento](https://www.google.com/search?q=%23-fluxo-de-processamento)
+* [Pré-requisitos](https://www.google.com/search?q=%23-pr%C3%A9-requisitos)
+* [Como Executar](https://www.google.com/search?q=%23-como-executar)
+* [Endpoints da API](https://www.google.com/search?q=%23-endpoints-da-api)
+* [Demonstração](https://www.google.com/search?q=%23-demonstra%C3%A7%C3%A3o)
+* [Monitoramento](https://www.google.com/search?q=%23-monitoramento)
+* [Equipe](https://www.google.com/search?q=%23-equipe)
+
+---
+
+## Resumo Executivo
+
+O SUS Triage API é uma solução de backend de alta performance projetada para modernizar a porta de entrada das unidades de saúde.
+Utilizando o Protocolo de Manchester automatizado e algoritmos de geolocalização, o sistema elimina a subjetividade na triagem e
+direciona pacientes para unidades com capacidade real de atendimento em milissegundos. A solução resolve o gargalo da superlotação
+através de uma arquitetura assíncrona (Event-Driven), garantindo que o sistema nunca saia do ar, mesmo em situações de catástrofe
+ou alta demanda.
 
 ---
 
@@ -33,32 +36,49 @@ Sistema backend desenvolvido para o **Hackathon Tech Challenge 5** que implement
 
 ### 🎯 Problema Abordado
 
-Otimizar o processo de **triagem e alocação** nas unidades de saúde através de:
+No cenário atual do SUS, a triagem manual e a falta de integração entre unidades geram três problemas críticos:
 
-- ✅ **Classificação automática de risco** (Protocolo de Manchester)
-- ✅ **Alocação inteligente** por proximidade e disponibilidade
-- ✅ **Processamento assíncrono** para alta performance
-- ✅ **Priorização de emergências** via filas de mensageria
-- ✅ **Redução de superlotação** através de direcionamento eficiente
-- ✅ **Transparência** no fluxo de atendimento
+* **Subjetividade e Erro Humano:** A classificação de risco depende do cansaço e da interpretação momentânea do profissional.
+* **Ineficiência Logística:** Pacientes graves são frequentemente levados a unidades (UPAs/Hospitais) que já estão lotadas, perdendo tempo precioso de deslocamento (a "hora de ouro").
+* **Falta de Visibilidade:** Não há uma visão em tempo real da demanda versus capacidade da rede.
+
+Sendo assim, pensamos em otimizar o processo de **triagem e alocação** nas unidades de saúde através de:
+
+* ✅ **Classificação automática de risco** (Protocolo de Manchester)
+* ✅ **Alocação inteligente** por proximidade e disponibilidade
+* ✅ **Processamento assíncrono** para alta performance
+* ✅ **Priorização de emergências** via filas de mensageria
+* ✅ **Redução de superlotação** através de direcionamento eficiente
+* ✅ **Transparência** no fluxo de atendimento
+
+### 💡 O Impacto da Solução
+
+Nossa solução ataca diretamente a mortalidade evitável e a eficiência operacional:
+
+* **Para o Paciente:** Redução drástica no tempo de espera e garantia de atendimento na unidade correta (geolocalizada).
+* **Para o Profissional:** Ferramenta de apoio à decisão que automatiza a burocracia, permitindo foco no atendimento clínico.
+* **Para a Gestão Pública:** Dados auditáveis e capacidade de prever surtos de demanda baseados nos logs de triagem em tempo real.
 
 ### 💡 Solução Implementada
 
 #### 🚀 **Arquitetura Event-Driven com RabbitMQ**
-- Response instantâneo (< 100ms) para triagem
-- Alocação de unidades processada em background
-- Escalabilidade horizontal para milhares de triagens simultâneas
-- Resiliência a falhas com mensageria persistente
+
+* Response instantâneo (< 100ms) para triagem
+* Alocação de unidades processada em background
+* Escalabilidade horizontal para milhares de triagens simultâneas
+* Resiliência a falhas com mensageria persistente
 
 #### 🎯 **Classificação Inteligente**
-- 5 níveis de risco (VERMELHO, LARANJA, AMARELO, VERDE, AZUL)
-- Análise de sinais vitais em tempo real
-- Protocolo de Manchester adaptado
+
+* 5 níveis de risco (VERMELHO, LARANJA, AMARELO, VERDE, AZUL)
+* Análise de sinais vitais em tempo real
+* Protocolo de Manchester adaptado
 
 #### 📍 **Alocação Geolocalizada**
-- Cálculo de distância paciente-unidade
-- Seleção automática da unidade mais próxima com vaga
-- Filtro por tipo adequado ao risco (HOSPITAL, UPA, UBS)
+
+* Cálculo de distância paciente-unidade
+* Seleção automática da unidade mais próxima com vaga
+* Filtro por tipo adequado ao risco (HOSPITAL, UPA, UBS)
 
 ---
 
@@ -74,45 +94,60 @@ Otimizar o processo de **triagem e alocação** nas unidades de saúde através 
 │  =                                                    │
 │  Experiência do Usuário Otimizada                    │
 └──────────────────────────────────────────────────────┘
+
 ```
 
 **Benefícios:**
-- ✅ Desacoplamento entre triagem e alocação
-- ✅ Throughput elevado (milhares de triagens/segundo)
-- ✅ Processamento paralelo via RabbitMQ
-- ✅ Cliente não espera processamento pesado
 
-### 2️⃣ **Escalabilidade Comprovada**
+* ✅ Desacoplamento entre triagem e alocação
+* ✅ Throughput elevado (milhares de triagens/segundo)
+* ✅ Processamento paralelo via RabbitMQ
+* ✅ Cliente não espera processamento pesado
 
-- ✅ Múltiplos consumers para processamento paralelo
-- ✅ Filas persistentes com dead-letter queue
-- ✅ Retry automático em caso de falha
-- ✅ Preparado para ambiente de produção
+### 2️⃣ **Garantia de Idempotência e Consistência**
+
+* ✅ **Idempotent Consumer:** O sistema detecta se uma mensagem do RabbitMQ já foi processada (através do status da Triagem no BD). Isso evita que falhas de rede causem "double-spending" de vagas em hospitais.
+* ✅ **Integridade de Dados:** Garantia de que a ocupação da unidade de saúde só é incrementada uma única vez por paciente, mesmo em casos de retentativas automáticas da fila.
+
+### 3️⃣ **Estratégia de Cache Distribuído (Redis)**
+
+* ✅ **Cache de Unidades:** Redução drástica de acessos ao PostgreSQL através do cache de informações estáticas e geográficas das unidades de saúde no Redis.
+* ✅ **Performance de Consulta:** Respostas ultrarrápidas na busca por unidades compatíveis durante o pico de demanda.
+
+### 4️⃣ **Escalabilidade Comprovada**
+
+* ✅ Múltiplos consumers para processamento paralelo
+* ✅ Filas persistentes com dead-letter queue
+* ✅ Retry automático em caso de falha
+* ✅ Preparado para ambiente de produção
 
 **Como Funciona o Processamento Paralelo:**
 
 A aplicação está configurada para processar múltiplas mensagens simultaneamente através de:
 
 1. **Múltiplos Threads na Mesma Instância**
-   - **Dev:** 3 a 10 consumers simultâneos
-   - **Prod:** 5 a 20 consumers simultâneos
-   - Spring AMQP ajusta dinamicamente conforme a carga
+* **Dev:** 3 a 10 consumers simultâneos
+* **Prod:** 5 a 20 consumers simultâneos
+* Spring AMQP ajusta dinamicamente conforme a carga
 
 2. **Múltiplas Instâncias (Horizontal Scaling)**
-   ```bash
-   # Escalar para 3 instâncias no Docker Compose
-   docker compose up --scale sus-triage-api=3 -d
-   ```
-   - RabbitMQ distribui mensagens entre todas as instâncias
-   - Cada instância pode ter até 20 consumers (em prod)
-   - **Capacidade total:** 3 instâncias × 20 consumers = **60 triagens simultâneas**
+```bash
+# Escalar para 3 instâncias no Docker Compose
+docker compose up --scale sus-triage-api=3 -d
+
+```
+
+* RabbitMQ distribui mensagens entre todas as instâncias
+* Cada instância pode ter até 20 consumers (em prod)
+* **Capacidade total:** 3 instâncias × 20 consumers = **60 triagens simultâneas**
 
 3. **Combinação (Máxima Escalabilidade)**
-   - Escalar horizontalmente (mais containers)
-   - Cada container com múltiplos threads
-   - Tolerância a falhas: se 1 container cair, os outros continuam
+* Escalar horizontalmente (mais containers)
+* Cada container com múltiplos threads
+* Tolerância a falhas: se 1 container cair, os outros continuam
 
 **Configuração Atual:**
+
 ```yaml
 # application-dev.yml
 concurrency: 3        # Mínimo de 3 threads
@@ -121,16 +156,17 @@ max-concurrency: 10   # Até 10 threads sob carga
 # application-prod.yml
 concurrency: 5        # Mínimo de 5 threads
 max-concurrency: 20   # Até 20 threads sob carga
+
 ```
 
-### 3️⃣ **Observabilidade Completa**
+### 5️⃣ **Observabilidade Completa**
 
-- ✅ Logs estruturados em cada etapa do processo
-- ✅ Spring Boot Actuator para métricas de saúde
-- ✅ RabbitMQ Management UI para visualização de filas
-- ✅ Rastreamento end-to-end de requisições
+* ✅ Logs estruturados em cada etapa do processo
+* ✅ Spring Boot Actuator para métricas de saúde
+* ✅ RabbitMQ Management UI para visualização de filas
+* ✅ Rastreamento end-to-end de requisições
 
-### 4️⃣ **Aderência ao Mundo Real**
+### 6️⃣ **Aderência ao Mundo Real**
 
 - ✅ Reflete processos reais de triagem do SUS
 - ✅ Separação entre triagem e alocação (como no SUS real)
@@ -142,30 +178,55 @@ max-concurrency: 20   # Até 20 threads sob carga
 ## 🛠️ Tecnologias Utilizadas
 
 ### Backend
-- ☕ **Java 21** (LTS)
-- 🍃 **Spring Boot 4.0.2**
-  - Spring Web (REST APIs)
-  - Spring Data JPA (Persistência)
-  - Spring AMQP (RabbitMQ)
-  - Spring Validation (Bean Validation)
-  - Spring Boot Actuator (Monitoramento)
 
-### Persistência
-- 🐘 **PostgreSQL** (Produção)
-- 💾 **H2 Database** (Desenvolvimento/Testes)
-- 🔴 **Redis** (Cache distribuído)
+* ☕ **Java 21** (LTS)
+* 🍃 **Spring Boot 4.0.2**
+* Spring Web (REST APIs)
+* Spring Data JPA (Persistência)
+* Spring AMQP (RabbitMQ)
+* Spring Validation (Bean Validation)
+* Spring Boot Actuator (Monitoramento)
+* Spring Cache (Integração com Redis)
+
+### Persistência & Cache
+
+* 🐘 **PostgreSQL** (Banco de dados relacional para persistência de triagens e unidades)
+* 💾 **H2 Database** (Utilizado em ambiente de Desenvolvimento e Testes)
+* 🔴 **Redis** (Cache distribuído para otimizar a busca de unidades de saúde e reduzir latência)
 
 ### Mensageria
-- 🐰 **RabbitMQ 3.13**
-  - DirectExchange para roteamento
-  - Filas persistentes com durabilidade
-  - Dead-letter queue para erros
 
-### Ferramentas
-- 📝 **Swagger/OpenAPI 3** (Documentação interativa)
-- 🐳 **Docker & Docker Compose** (Containerização)
-- 🔧 **Maven** (Build e dependências)
-- 🧪 **JUnit 5** (Testes)
+* 🐰 **RabbitMQ 3.13**
+* DirectExchange para roteamento
+* Filas persistentes com durabilidade
+* Dead-letter queue para tratamento de erros fatais
+
+### Ferramentas & DevOps
+
+* 📝 **Swagger/OpenAPI 3** (Documentação interativa)
+* 🐳 **Docker & Docker Compose** (Containerização de toda a stack)
+* 🤖 **GitHub Actions** (Automação de PRs e Pipeline de CI/CD)
+* 🔧 **Maven** (Gerenciamento de build e dependências)
+* 🧪 **JUnit 5** (Testes automatizados)
+
+---
+
+## 🧠 Processo de Desenvolvimento & Design Thinking
+
+Para conceber esta solução, a equipe seguiu um fluxo estruturado de ideação e validação:
+
+### 1. Mapeamento e Empatia (Personas)
+Criamos personas para entender a dor real:
+Dra. Helena (Plantonista): Sofre com a pressão de classificar centenas de pacientes e a falta de saber para onde encaminhar os casos graves.
+Sr. João (Paciente): Hipertenso, chega à UPA e espera horas sem saber que sua condição é grave.
+
+### 2. Brainstorming e Ideação
+Utilizamos a técnica de "Crazy 8" para gerar ideias. Descartamos a ideia de um "app para o paciente" (barreira tecnológica) e focamos em uma API robusta de integração que possa ser consumida por totens, tablets de enfermeiros ou sistemas legados do SUS.
+
+### 3. Definição da Arquitetura (A Escolha pela Inovação)
+Decidimos não fazer apenas um CRUD. Para resolver o problema de escala (milhares de acessos simultâneos), optamos por uma Arquitetura Orientada a Eventos (EDA).
+
+Por que RabbitMQ? Para garantir que a triagem seja salva instantaneamente (<50ms), mesmo que o algoritmo de alocação leve mais tempo. Isso salva vidas em sistemas críticos.
 
 ---
 
@@ -198,7 +259,7 @@ max-concurrency: 20   # Até 20 threads sob carga
 └──────────────────────┘    └─────────────────────────┘
 ```
 
-### 🔄 Fluxo Assíncrono (Event-Driven Architecture)
+### 🔄 Fluxo Assíncrono com Idempotência e Cache (Event-Driven Architecture)
 
 ```
 ┌──────────┐    ① POST /api/triagem      ┌─────────────┐
@@ -252,6 +313,14 @@ max-concurrency: 20   # Até 20 threads sob carga
                                 │    PostgreSQL          │
                                 │    (ALOCADA)           │
                                 └────────────────────────┘
+                                
+1. **Ingestão:** Paciente envia dados via `POST /api/triagem`.
+2. **Persistência Inicial:** Sistema salva no PostgreSQL com status `PENDENTE_ALOCACAO`.
+3. **Evento:** Evento é disparado para o RabbitMQ.
+4. **Consumo:** O `TriagemConsumer` recebe a mensagem.
+5. **Verificação (Idempotência):** O Consumer checa no banco se a triagem já está `ALOCADA`. Se sim, ignora o reprocessamento.
+6. **Busca Otimizada (Redis):** O sistema busca unidades compatíveis, preferencialmente via Cache.
+7. **Alocação:** Calcula distância e atualiza o banco de dados para `ALOCADA`.
 ```
 
 ### ⏱️ Timeline de Processamento
@@ -749,9 +818,30 @@ Write-Host "Unidade: $($triagemFinal.unidadeDestino.nome)"
 
 ---
 
+## 🚀 Aprendizados e Próximos Passos
+
+### O que aprendemos:
+
+- **Complexidade Distribuída:** Lidar com consistência eventual (o delay entre a triagem e a alocação) exigiu tratamento robusto de erros e Dead Letter Queues.
+- **Importância do Protocolo:** Traduzir regras médicas (Manchester) para Strategy Pattern em Java mostrou como o código limpo pode salvar vidas ao evitar bugs lógicos.
+
+### Roadmap (Futuro):
+
+- **Integração com Google Maps API:** Para considerar o trânsito em tempo real no cálculo de deslocamento, não apenas a distância linear (Haversine).
+- **Machine Learning:** Implementar um modelo preditivo que aprenda com o histórico de triagens para prever lotação antes que ela aconteça.
+- **App do Paciente:** Permitir que o paciente faça uma pré-triagem informativa antes de sair de casa.
+
+---
+
 ## 👥 Equipe
 
-Desenvolvido por estudantes da **Pós-Graduação em Arquitetura e Desenvolvimento Java - FIAP**
+Desenvolvido com dedicação por alunos da **Pós-Graduação em Arquitetura e Desenvolvimento Java — FIAP**.
+
+| Nome | RM | GitHub                                                                                 |
+| --- | --- |----------------------------------------------------------------------------------------|
+| **Leonardo Felipe Ventura Ferreira** | 363339 | [BL7Ki](https://www.google.com/search?q=https://github.com/BL7Ki)                      |
+| **Wagner de Lima Braga Silva** | 364223 | [wagner](https://github.com/wagnersistemalima)                                         |
+| **Everton Cristiano de Souza Teixeira** | 362065 | [evertonteixeira](https://www.google.com/search?q=https://github.com/evertoncsteixeira) |
 
 ---
 

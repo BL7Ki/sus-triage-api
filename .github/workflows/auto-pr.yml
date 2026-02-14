@@ -1,0 +1,35 @@
+name: 🚀 Auto PR to Dev
+
+# Dispara apenas quando houver PUSH em branches que começam com feature/, fix/ ou hotfix/
+on:
+  push:
+    branches:
+      - 'feature/**'
+      - 'fix/**'
+      - 'hotfix/**'
+
+permissions:
+  contents: write       # Permissão para ler o código
+  pull-requests: write  # Permissão para criar o PR
+
+jobs:
+  create-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout do Código
+        uses: actions/checkout@v4
+
+      - name: Criar Pull Request para Develop
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Token automático do GitHub
+        run: |
+          echo "Tentando criar PR da branch ${{ github.ref_name }} para a branch develop..."
+          
+          # Tenta criar o PR usando a CLI do GitHub (gh)
+          # O "|| true" garante que o workflow não falhe se o PR já existir
+          gh pr create \
+            --base develop \
+            --head ${{ github.ref_name }} \
+            --title "🔀 Auto PR: ${{ github.ref_name }}" \
+            --body "PR criado automaticamente após push na branch **${{ github.ref_name }}**.<br>Por favor, revise se o Build passou antes de aceitar." \
+            || echo "⚠️ O Pull Request já existe ou a branch 'develop' não foi encontrada."
